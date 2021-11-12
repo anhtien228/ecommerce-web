@@ -1,0 +1,26 @@
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getSongByName`(IN `songName` VARCHAR(255))
+BEGIN select * from song where Name LIKE CONCAT('%', songName , '%'); END$$
+DELIMITER ;
+
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getSongInfo`(IN `songInputID` INT(11))
+BEGIN 
+SELECT  song.Name AS songName,
+        song.ReleaseYear AS releaseYear,
+        artist.Name AS artistName,
+        genre.GenreName AS genre
+	song.ID as songID
+FROM song
+INNER JOIN artistsong ON song.id=artistsong.SongID
+INNER JOIN artist ON artistsong.ArtistID=artist.ID
+INNER JOIN genre ON genre.SongID=song.ID
+WHERE song.ID=songInputID
+END$$
+DELIMITER ;
+
+INSERT INTO artistsong(ArtistID, SongID)
+VALUES (7, 1),
+	(8, 2),
+	(9, 3),

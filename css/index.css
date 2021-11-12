@@ -1,0 +1,262 @@
+/*======================== BACKGROUND ===============================*/
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Gilroy Medium";
+  }
+  /*======================== FOOTER ===============================*/
+  .footer {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: linear-gradient(
+                         rgba(20,20,20, .9), 
+                         rgba(20,20,20, .9));
+    font-family: "Gilroy Regular";
+    color: white;
+    text-align: center;
+    opacity: 1;
+    font-size: 12px;
+    position: absolute;
+  }
+  
+  .menu {
+    margin: 0 auto;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+  }
+  /*======================== MAIN CONTENT ===============================*/
+  #main-page{
+    background-color: white;
+    background-position: center;
+    height: 350px;
+    overflow: hidden;
+  }
+  
+  .content-bg {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  .content-text {
+    text-align: center;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .content-text h1 {
+    font-family: "Gilroy Bold";
+    font-size: 70px;
+    text-decoration: none;
+    color: #1d1d1d;
+    display: inline;
+  }
+  
+  .content-text h2 {
+    font-family: "Gilroy Bold";
+    font-size: 40px;
+    text-decoration: none;
+    color: #1d1d1d;
+    display: inline;
+  }
+  
+  .content-text p {
+    font-family: "Gilroy Medium";
+    font-size: 16px;
+    text-decoration: none;
+    color: #4d4d4d;
+  }
+  /*======================== LOGIN CONTENT ===============================*/
+  .popup-message {
+    width: 350px;
+    height: auto;
+    position: fixed;
+    top: 12%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999;
+  }
+    .submit-search {
+        padding: 15px;
+        width: 100%;
+        border: 1px solid transparent;
+        font-size: 16px;
+        border-radius: 3px;
+    }
+    .search-field{
+    width: 700px;
+    /* background: #fff; */
+    border-radius: 2px;
+    color: #1d1d1d;
+    }
+  
+  .login-text {
+    text-align: center;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #1d1d1d;
+  }
+  
+  .login-text h1 {
+    font-family: "Gilroy Bold";
+    font-size: 60px;
+  }
+  
+  .login-text h2 {
+    font-family: "Gilroy Thin";
+    font-size: 54px;
+  }
+  
+  .login-text h3 {
+    font-family: "Gilroy Thin";
+    font-size: 36px;
+  }
+  
+  .login-text p {
+    font-family: "Gilroy Medium";
+    font-size: 16px;
+    color: #1d1d1d;
+  }
+  
+  #login-container {
+    background: #ffffff;
+    background-position: center;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .error{
+    background: #ff8686;
+    color: #1d1d1d;
+    padding: 10px;
+    width: 90%;
+    border-radius: 5px;
+    text-align: center;
+    -webkit-animation: fadeout 5s linear forwards;
+    animation: fadeout 5s linear forwards;
+  }
+
+  .success{
+    background: #08ffad;
+    color: #1d1d1d;
+    padding: 10px;
+    width: 90%;
+    border-radius: 5px;
+    text-align: center;
+    -webkit-animation: fadeout 5s linear forwards;
+    animation: fadeout 5s linear forwards;
+  }
+
+  @-webkit-keyframes fadeout {
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+
+  @keyframes fadeout {
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+  
+  /*======================== CONTACT CONTENT ===============================*/
+  #contact-container {
+    background: #ffffff;
+    background-position: center;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  .contact-content {
+    display: grid;
+    grid-template-columns: repeat (8,1fr);
+    margin: 0 auto;
+    margin-top: 300px;
+    height: 400px;
+    width: 100%;
+    grid-gap: 5px;
+    grid-auto-rows: 50px;
+    top: 5%;
+    grid-template-areas:
+      "a a a a"
+      "b b b b"
+      "c c c c";
+    position: relative;
+    align-content: space-between;
+    justify-content: space-around;
+    text-align: center;
+    color: #1d1d1d;
+  }
+  
+  .contact-break {
+    grid-area: e;
+    align-self: center;
+    justify-self: center;
+  }
+  
+  .contact1 {
+    width:500px;
+    grid-area: a;
+    align-self: center;
+    justify-self: center;
+    font-family: "Gilroy Medium";
+    font-size: 18px;
+  }
+  
+  .contact1 p {
+    grid-area: a;
+    font-family: "Gilroy Medium";
+    font-size: 15px;
+  }
+  
+  .contact2 {
+    width:500px;
+    grid-area: b;
+    align-self: center;
+    justify-self: center;
+    font-family: "Gilroy Medium";
+    font-size: 18px;
+  }
+  
+  .contact2 p {
+    grid-area: b;
+    font-family: "Gilroy Medium";
+    font-size: 15px;
+  }
+  
+  .contact3 {
+    width:700px;
+    grid-area: c;
+    align-self: center;
+    justify-self: center;
+    font-family: "Gilroy Medium";
+    font-size: 18px;
+  }
+  
+  .contact3 p {
+    grid-area: c;
+    font-family: "Gilroy Medium";
+    font-size: 15px;
+  }
+  
+  /*======================== FONT ===============================*/
+  @font-face {
+    font-family: "Gilroy Regular";
+    src: url("../fonts/gilroy-regular.otf") format("opentype");
+  }
+  
+  @font-face {
+    font-family: "Gilroy Medium";
+    src: url("../fonts/gilroy_medium.otf") format("opentype");
+  }
+  
+  @font-face {
+    font-family: "Gilroy Bold";
+    src: url("../fonts/gilroy-bold.otf") format("opentype");
+  }
+  
+  

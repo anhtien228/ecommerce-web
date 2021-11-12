@@ -1,0 +1,418 @@
+/*======================== BACKGROUND ===============================*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Gilroy Medium";
+  outline: none;
+  }
+  
+/*======================== FOOTER ===============================*/
+  .footer-login {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: linear-gradient(
+                         rgba(20,20,20, .9), 
+                         rgba(20,20,20, .9));
+    font-family: "Gilroy Regular";
+    color: white;
+    text-align: center;
+    opacity: 1;
+    font-size: 12px;
+    position: absolute;
+  }
+
+/*======================== LOGIN FORM ===============================*/
+.flex-mode {
+  display: flex;
+  padding-top: 20px;
+  padding-bottom: 25px;
+}
+
+.flex-mode > div:nth-child(1) {
+  align-self:center;
+}
+
+.flex-mode > div:nth-child(2) {
+  align-self:center;
+  margin-left:auto;
+}
+
+  .popup-message {
+    width: 425px;
+    height: auto;
+    position: fixed;
+    top: 12%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999;
+  }
+
+  .wrapper{
+  min-height: 100vh;
+  margin-top: 200px;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  }
+
+  .form{
+  width: 425px;
+  height: auto;
+  /* background: #fff; */
+  margin-top: 20px;
+  padding: 35px 50px;
+  border-radius: 2px;
+  color: #1d1d1d;
+  }
+
+  .form .title{
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 700;
+  font-size: 24px;
+  color: #1d1d1d;
+  }
+
+  .form .input_wrap{
+  margin-bottom: 20px;
+  width: 325px;
+  position: relative;
+  }
+
+  .form .input_wrap:last-child{
+  margin-bottom: 0;
+  }
+
+  .form .input_wrap label{
+  display: block;
+  margin-bottom: 5px;
+  }
+
+  .form .input_wrap input{
+  padding: 15px;
+  width: 100%;
+  border: 1px solid transparent;
+  font-size: 16px;
+  border-radius: 3px;
+  }
+
+  .form .input_wrap .input{
+  background: #f5f4f4;
+  padding-right: 35px;
+  }
+
+  .form .input_wrap .input:focus{
+  border-color: #4285f4;
+  }
+
+  .form .input_wrap .input_field{
+  position: relative;
+  }
+
+  .form .input_wrap .btn{
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #fff;
+  border: 1.5px solid #727272;
+  border-radius: 3px;
+  transition: 0.4s
+  }
+
+  .form .input_wrap .btn.disabled{
+  border: 1.5px solid #727272;
+  background: #727272;
+  }
+
+  .form .input_wrap .btn.enabled{
+  border: 1.5px solid #4285f4;
+  background: #4285f4;
+  cursor: pointer;
+  }
+
+  .form .input_wrap .btn.enabled:hover{
+    color: #4285f4;
+    border: 1.5px solid #4285f4;
+    background: #fff;
+    cursor: pointer;
+  }
+
+  .form .input_wrap .regbtn{
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #fff;
+    background: #1d1d1d;
+    padding: 20px;
+    width: 100%;
+    border: 1px solid transparent;
+    font-size: 16px;
+    border: 1.5px solid #1d1d1d;
+    border-radius: 3px;
+    text-align: center;
+    transition: 0.4s;
+    position: relative;
+  }
+
+  .form .input_wrap .regbtn:hover{
+    border: 1.5px solid #4285f4;
+    border-radius: 3px;
+    color: #4285f4;
+    background: #fff;
+    cursor: pointer;
+  }
+  
+  /* .form .input_wrap .regbtn p{
+    display: inline-block;     
+    position: relative;  
+    text-decoration: none;
+    color: #fff;
+    transition: 0.4s;
+    z-index: 1;  
+  }
+
+  .form .input_wrap .regbtn p:hover{
+    color: #4285f4;
+  } */
+
+  .link{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    text-decoration: none;
+    z-index: 10;
+  }
+  
+  .form .input_wrap .error_msg {
+  font-size: 15px;
+  margin-bottom: 5px; 
+  color: #f74040;
+  display: none;
+  }
+  .form .input_wrap .error_name {
+    font-size: 15px;
+    margin-bottom: 5px; 
+    color: #f74040;
+    display: none;
+  }
+
+  .form .input_wrap .error_username {
+    font-size: 15px;
+    margin-bottom: 5px; 
+    color: #f74040;
+    display: none;
+  }  
+
+  .form .input_wrap .error_password {
+    font-size: 15px;
+    margin-bottom: 5px; 
+    color: #f74040;
+    display: none;
+  }
+
+  .error{
+    background: #ff8686;
+    color: #1d1d1d;
+    padding: 10px;
+    width: 90%;
+    border-radius: 5px;
+    text-align: center;
+    -webkit-animation: fadeout 5s linear forwards;
+    animation: fadeout 5s linear forwards;
+  }
+
+  .success{
+    background: #08ffad;
+    color: #1d1d1d;
+    padding: 10px;
+    width: 90%;
+    border-radius: 5px;
+    text-align: center;
+    -webkit-animation: fadeout 5s linear forwards;
+    animation: fadeout 5s linear forwards;
+  }
+
+  @-webkit-keyframes fadeout {
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+
+  @keyframes fadeout {
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+  
+  #user_register {
+    display: block;
+  }
+
+  #artist_register {
+    display: none;
+  }
+  
+  /* Switch toggle button
+==========================*/
+.switch {
+	position: relative;
+	display: block;
+	width: 100px;
+	height: 30px;
+	padding: 3px;
+	/* margin: 0 10px 10px 0; */
+	background: linear-gradient(to bottom, #eeeeee, #FFFFFF 25px);
+	background-image: -webkit-linear-gradient(top, #eeeeee, #FFFFFF 25px);
+	border-radius: 18px;
+	box-shadow: inset 0 -1px white, inset 0 1px 1px rgba(0, 0, 0, 0.05);
+	cursor: pointer;
+	box-sizing:content-box;
+}
+.switch-input {
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 0;
+	box-sizing:content-box;
+}
+.switch-label {
+	position: relative;
+	display: block;
+	height: inherit;
+	font-size: 10px;
+	text-transform: uppercase;
+	background: #eceeef;
+	border-radius: inherit;
+	box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12), inset 0 0 2px rgba(0, 0, 0, 0.15);
+	box-sizing:content-box;
+}
+.switch-label:before, .switch-label:after {
+	position: absolute;
+	top: 50%;
+	margin-top: -.5em;
+	line-height: 1;
+	-webkit-transition: inherit;
+	-moz-transition: inherit;
+	-o-transition: inherit;
+	transition: inherit;
+	box-sizing:content-box;
+}
+.switch-label:before {
+	content: attr(data-off);
+	right: 11px;
+	color: #4285f4;
+	text-shadow: 0 1px rgba(255, 255, 255, 0.5);
+}
+.switch-label:after {
+	content: attr(data-on);
+	left: 11px;
+	color: #FFFFFF;
+	text-shadow: 0 1px rgba(0, 0, 0, 0.2);
+	opacity: 0;
+}
+.switch-input:checked ~ .switch-label {
+	background: #E1B42B;
+	box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15), inset 0 0 3px rgba(0, 0, 0, 0.2);
+}
+.switch-input:checked ~ .switch-label:before {
+	opacity: 0;
+}
+.switch-input:checked ~ .switch-label:after {
+	opacity: 1;
+}
+.switch-handle {
+	position: absolute;
+	top: 4px;
+	left: 4px;
+	width: 28px;
+	height: 28px;
+	background: linear-gradient(to bottom, #FFFFFF 40%, #f0f0f0);
+	background-image: -webkit-linear-gradient(top, #FFFFFF 40%, #f0f0f0);
+	border-radius: 100%;
+	box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+}
+.switch-handle:before {
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -6px 0 0 -6px;
+	width: 12px;
+	height: 12px;
+	background: linear-gradient(to bottom, #eeeeee, #FFFFFF);
+	background-image: -webkit-linear-gradient(top, #eeeeee, #FFFFFF);
+	border-radius: 6px;
+	box-shadow: inset 0 1px rgba(0, 0, 0, 0.02);
+}
+.switch-input:checked ~ .switch-handle {
+	left: 74px;
+	box-shadow: -1px 1px 5px rgba(0, 0, 0, 0.2);
+}
+ 
+/* Transition
+========================== */
+.switch-label, .switch-handle {
+	transition: All 0.3s ease;
+	-webkit-transition: All 0.3s ease;
+	-moz-transition: All 0.3s ease;
+	-o-transition: All 0.3s ease;
+}
+
+.switch-light {
+	padding: 0;
+	background: #FFF;
+	background-image: none;
+}
+.switch-light .switch-label {
+	background: #FFF;
+	border: solid 2px #4285f4;
+	box-shadow: none;
+}
+.switch-light .switch-label:after {
+	color: #9370DB;
+}
+.switch-light .switch-label:before {
+	right: inherit;
+	left: 11px;
+}
+.switch-light .switch-handle {
+	top: 6px;
+	left: 72px;
+	background: #4285f4;
+	width: 22px;
+	height: 22px;
+	box-shadow: none;
+}
+.switch-light .switch-handle:before {
+	background: #eceeef;
+}
+.switch-light .switch-input:checked ~ .switch-label {
+	background: #FFF;
+	border-color: #9370DB;
+}
+.switch-light .switch-input:checked ~ .switch-handle {
+	left: 72px;
+	box-shadow: none;
+	background: #9370DB
+}
+.switch-light .switch-input:checked ~ .switch-handle:before {
+	background: #eceeef;
+}
+
+/*======================== FONT ===============================*/
+  @font-face {
+    font-family: "Gilroy Regular";
+    src: url("../fonts/gilroy-regular.otf") format("opentype");
+  }
+  
+  @font-face {
+    font-family: "Gilroy Medium";
+    src: url("../fonts/gilroy_medium.otf") format("opentype");
+  }
+  
+  @font-face {
+    font-family: "Gilroy Bold";
+    src: url("../fonts/gilroy-bold.otf") format("opentype");
+  }
+
+  
