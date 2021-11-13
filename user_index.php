@@ -11,7 +11,7 @@ if(!isset($_SESSION["user_name"]))
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <meta name="format-detection" content="telephone=no">
-        <title>Rythm</title>
+        <title>Electro</title>
         <!--reset css-->
         <link rel="stylesheet" href="css/product.css"/>
         <link rel="stylesheet" href="css/flex_user.css"/>
@@ -52,27 +52,30 @@ if(!isset($_SESSION["user_name"]))
         ?>
         <!--Navigation bar-->
         <div class="menu">
-        <nav class="flex-container">
-            <ul>
-                <li><a href="index.php"><h1 style="font-size: 46px; margin-left: 5rem;">Electro</h1></a></li>
-                <li><a href="index.php">Home</a></li>
-                <li><a href="login.php">Product</a>
-                    <ul>
-                        <li><a href="index.php">Asus</a></li>
-                        <li><a href="index.php">Lenovo</a></li>
-                    </ul>
-                </li>
-                <li>
-                <form action="searchsong.php" id="search_song" method="post">
-                    <input type="text" class="search__input" type="text" name="song_name" placeholder="Search a product">
-                </form>
-                </li>
-                <li><i style='font-size:17px' class='fas'>&#xf406;</i></li>
-                <li><a href="#"><?php echo $_SESSION['name']; ?></a></li>
-                <li><a href="logout.php" class="btn blue" onclick="return confirm('Are you sure you want to logout?')" ><span>Logout</span></a></li>
-            </ul>
-        </nav>
-    </div>
+            <nav class="flex-container">
+                <ul>
+                    <!--Logo-->
+                    <li>
+                        <a href="user_index.php?id=<?php echo session_id()?>"><img src="./img/rythm.png" width=250px; height=90px; /></a>
+                    </li>
+                    <!--Menu-->
+                    <li>
+                        <a href="user_index.php?id=<?php echo session_id()?>">Home</a>
+                        <a href="user_index.php?id=<?php echo session_id()?>">Product</a>
+                        <!-- <li><form action="searchsong.php" id="search_song" method="post">
+                            <input type="text" class="search__input" type="text" name="song_name" placeholder="Search a product"></form>
+                        </li> -->
+                        <a href="about.php?id=<?php echo session_id()?>">About</a>
+                    </li>
+                    <!--User action-->
+                    <li>
+                    <a style='font-size:17px; align-self:center;' class='fas'>&#xf406;</a>
+                    <a href="#"><?php echo $_SESSION['name']; ?></a>
+                    <a href="logout.php" style="margin-left: 2rem;" class="btn blue" onclick="return confirm('Are you sure you want to logout?')" ><span>Logout</span></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
         <!--Body-->
         <section id="main-page">
          <div class="content-bg">
@@ -89,14 +92,21 @@ if(!isset($_SESSION["user_name"]))
             <input class="radio" id="one" name="group" type="radio" checked>
             <input class="radio" id="two" name="group" type="radio">
             <input class="radio" id="three" name="group" type="radio">
+            <input class="radio" id="four" name="group" type="radio">
+            <input class="radio" id="five" name="group" type="radio">
+            <input class="radio" id="six" name="group" type="radio">
 
             <div class="tabs">
                 <label class="tab" id="one-tab" for="one">Asus</label>
                 <label class="tab" id="two-tab" for="two">Acer</label>
                 <label class="tab" id="three-tab" for="three">Lenovo</label>
-                <label class="tab" id="four-tab" for="three">Dell</label>
-                <label class="tab" id="five-tab" for="three">HP</label>
-                <label class="tab" id="six-tab" for="three">Apple</label>
+                <label class="tab" id="four-tab" for="four">Dell</label>
+                <label class="tab" id="five-tab" for="five">HP</label>
+                <label class="tab" id="six-tab" for="six">Apple</label>
+                <div id="search-bar"><form action="searchsong.php" method="post">
+                    <input type="text" class="search__input" type="text" name="song_name" placeholder="Search a product">
+                </form>
+                </div>
             </div>
         <div class="grid-brand">
             <div class="grid-container" id="asus">
@@ -105,6 +115,7 @@ if(!isset($_SESSION["user_name"]))
                 <div class="grid-item">
                     <div id="img-wrapper"><img src='<?php echo $row['productPhoto'];?>'/></div>
                     <h1 id="product-name"><?php echo $row['productName'];?></h1>
+                    <p style="font-size: 12px;">SKU: <?php echo $row['productSKU'];?></p>
                     <p id="product-specs">
                         CPU: <?php echo $row['productCPU'];?><br>
                         RAM: <?php echo $row['productRAM'];?><br>
@@ -125,6 +136,7 @@ if(!isset($_SESSION["user_name"]))
                 <div class="grid-item">
                     <div id="img-wrapper"><img src='<?php echo $row['productPhoto'];?>'/></div>
                     <h1 id="product-name"><?php echo $row['productName'];?></h1>
+                    <p style="font-size: 12px;">SKU: <?php echo $row['productSKU'];?></p>
                     <p id="product-specs">
                         CPU: <?php echo $row['productCPU'];?><br>
                         RAM: <?php echo $row['productRAM'];?><br>
@@ -145,6 +157,70 @@ if(!isset($_SESSION["user_name"]))
                 <div class="grid-item">
                     <div id="img-wrapper"><img src='<?php echo $row['productPhoto'];?>'/></div>
                     <h1 id="product-name"><?php echo $row['productName'];?></h1>
+                    <p style="font-size: 12px;">SKU: <?php echo $row['productSKU'];?></p>
+                    <p id="product-specs">
+                        CPU: <?php echo $row['productCPU'];?><br>
+                        RAM: <?php echo $row['productRAM'];?><br>
+                        GPU: <?php echo $row['productGPU'];?><br>
+                        Storage: <?php echo $row['productSto'];?>
+                    </p>
+                    <div class="product-action">
+                        <div><label id="product-price">$<?php echo $row['productPrice'];?></label></div>
+                        <div><button>Add to cart</button></div>
+                    </div>
+                </div>
+                <?php } 
+                ?> 
+            </div>
+            <div class="grid-container" id="dell">
+                <?php   
+                foreach($dell as $row) { ?>
+                <div class="grid-item">
+                    <div id="img-wrapper"><img src='<?php echo $row['productPhoto'];?>'/></div>
+                    <h1 id="product-name"><?php echo $row['productName'];?></h1>
+                    <p style="font-size: 12px;">SKU: <?php echo $row['productSKU'];?></p>
+                    <p id="product-specs">
+                        CPU: <?php echo $row['productCPU'];?><br>
+                        RAM: <?php echo $row['productRAM'];?><br>
+                        GPU: <?php echo $row['productGPU'];?><br>
+                        Storage: <?php echo $row['productSto'];?>
+                    </p>
+                    <div class="product-action">
+                        <div><label id="product-price">$<?php echo $row['productPrice'];?></label></div>
+                        <div><button>Add to cart</button></div>
+                    </div>
+                </div>
+                <?php } 
+                ?> 
+            </div>
+            <div class="grid-container" id="hp">
+                <?php   
+                foreach($hp as $row) { ?>
+                <div class="grid-item">
+                    <div id="img-wrapper"><img src='<?php echo $row['productPhoto'];?>'/></div>
+                    <h1 id="product-name"><?php echo $row['productName'];?></h1>
+                    <p style="font-size: 12px;">SKU: <?php echo $row['productSKU'];?></p>
+                    <p id="product-specs">
+                        CPU: <?php echo $row['productCPU'];?><br>
+                        RAM: <?php echo $row['productRAM'];?><br>
+                        GPU: <?php echo $row['productGPU'];?><br>
+                        Storage: <?php echo $row['productSto'];?>
+                    </p>
+                    <div class="product-action">
+                        <div><label id="product-price">$<?php echo $row['productPrice'];?></label></div>
+                        <div><button>Add to cart</button></div>
+                    </div>
+                </div>
+                <?php } 
+                ?> 
+            </div>
+            <div class="grid-container" id="apple">
+                <?php   
+                foreach($apple as $row) { ?>
+                <div class="grid-item">
+                    <div id="img-wrapper"><img src='<?php echo $row['productPhoto'];?>'/></div>
+                    <h1 id="product-name"><?php echo $row['productName'];?></h1>
+                    <p style="font-size: 12px;">SKU: <?php echo $row['productSKU'];?></p>
                     <p id="product-specs">
                         CPU: <?php echo $row['productCPU'];?><br>
                         RAM: <?php echo $row['productRAM'];?><br>

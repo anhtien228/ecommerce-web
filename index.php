@@ -3,10 +3,10 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <meta name="format-detection" content="telephone=no">
-    <title>Rythm</title>
+    <title>Electro</title>
     <!--reset css-->
     <link rel="stylesheet" href="css/index.css" />
     <link rel="stylesheet" href="css/flex.css" />
@@ -27,21 +27,24 @@
     <div class="menu">
         <nav class="flex-container">
             <ul>
-                <li><a href="index.php"><img src="./img/rythm.png" width=250px; height=90px; /></a></li>
-                <li><a href="index.php">Home</a></li>
-                <li><a href="login.php">Product</a>
-                    <ul class="dropdown-1">
-                        <li><a href="index.php">Asus</a></li>
-                        <li><a href="index.php">Lenovo</a></li>
-                    </ul>
-                </li>
+                <!--Logo-->
                 <li>
-                <form action="searchsong.php" id="search_song" method="post">
-                    <input type="text" class="search__input" type="text" name="song_name" placeholder="Search a product">
-                </form>
+                    <a href="index.php"><img src="./img/rythm.png" width=250px; height=90px; /></a>
                 </li>
-                <li><a href="login.php" class="btn blue"><span>Login</span></a></li>
-                <li><a href="register.php" class="btn green"><span>Register</span></a></li>
+                <!--Menu-->
+                <li>
+                    <a href="index.php">Home</a>
+                    <a href="login.php">Product</a>
+                    <!-- <li><form action="searchsong.php" id="search_song" method="post">
+                        <input type="text" class="search__input" type="text" name="song_name" placeholder="Search a product"></form>
+                    </li> -->
+                    <a href="about.php">About</a>
+                </li>
+                <!--User action-->
+                <li>
+                    <a href="login.php" class="btn blue"><span>Login</span></a>
+                    <a href="register.php" class="btn green" style="color: #fff;"><span>Register</span></a>
+                </li>
             </ul>
         </nav>
     </div>

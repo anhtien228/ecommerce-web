@@ -15,7 +15,7 @@
   .flex-container> ul{
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-around;
     text-align: center;
   }
   
@@ -41,56 +41,30 @@
   .flex-container ul li a:hover {
     color: #4285f4;
   }
-
-  /* .flex-container ul li ul {
-    position: absolute;
+  
+  .flex-container ul li:nth-child(1) {
     display: flex;
-    flex-direction: column;
-    width: 100%;
-  } */
-  
-  .flex-container ul li ul li{
-    display: none;
-
-  }
-  .flex-container> ul >li:hover ul li{
-    display: block;
-  }
-  
-  .flex-container ul li:nth-child(1)  {
-    margin-left: 60px;
+    flex-direction: row;
+    justify-content: flex-start;
   }
   
   .flex-container ul li:nth-child(2)  {
-    margin-left: 60px;
-  }
-  
-  .flex-container ul  li:nth-child(n+2):nth-child(-n+3){
-    flex: 0 0 120px;
-  }
-
-  .flex-container ul li:nth-child(4)  {
-    margin-left: 100px;
-    flex-basis: 500px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 5rem;
   }
 
-  .flex-container ul li:nth-child(5)  {
-    margin-left: auto;
+  .flex-container ul li:nth-child(3)  {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 2rem;
   }
 
-  .flex-container ul  li:nth-child(n+5):nth-child(-n+6){
-    color: #fff;
-    flex: 0 0 120px;
-  }
-  
-  .flex-container ul li:nth-child(6)  {
-    margin-right: auto;
-  }
-  
   .avatar {
     vertical-align: middle;
-    width: 30px;
-    height: 30px;
+    width: 100%;
     border-radius: 50%;
   }
 
@@ -192,17 +166,17 @@
   color: #FFFFFF;
 }
 .btn.green {
-  background-color: #29C672;
-  border-color: #29C672;
+  background-color: #ecba16;
+  border-color: #ecba16;
 }
 .btn.green:hover, .btn.green:active, .btn.green:focus {
-  color: #29C672;
+  color: #ecba16;
 }
 .btn.green.bordered {
-  color: #29C672;
+  color: #ecba16;
 }
 .btn.green.bordered:before {
-  background-color: #29C672;
+  background-color: #ecba16;
 }
 .btn.green.bordered:hover, .btn.green.bordered:active, .btn.green.bordered:focus {
   color: #FFFFFF;

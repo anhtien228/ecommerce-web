@@ -50,10 +50,9 @@ if(isset($_POST['user_name']) && isset($_POST['password']))  {
                 }
                 $_SESSION['id'] = $row['id'];
 
-                session_start();
-
                 if(isset($_SESSION['user_name'])) {
-                    header("Location: user.php");
+                    session_start();
+                    header("Location: user.php?id=".session_id());
                     exit();
                 }
                 else {

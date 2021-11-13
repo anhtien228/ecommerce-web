@@ -1,27 +1,47 @@
 
 .tabs{
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  padding: 10px 20px;
+  /* background-image: linear-gradient(to bottom, #4285f4, #0a3b88); */
+}
+
+.tabs p {
+  font-family: 'Gilroy Medium';
+  font-size: 16px;
+  padding:10px 20px;
+  color:#1d1d1d;
+  flex-basis: 1rem;
+  text-align: center;
 }
 
 .tab {
   font-family: 'Gilroy Medium';
-  font-size: 20px;
+  font-size: 16px;
   cursor: pointer;
   padding:10px 20px;
   /* margin:0px 2px; */
   background:#fff;
-  color:#1d1d1d;
-  flex-basis: 200px;
+  color: #1d1d1d;
+  flex-basis: 1rem;
   text-align: center;
   transition: 0.4s;
+}
+
+.tabs .tab:first-child {
+  margin-left: 15%;
+}
+
+.tabs #search-bar {
+  margin-left: auto;
+  margin-right: 15%;
+  width: 20%;
 }
 
 .tab:hover {
   background:#4285f4;
   color:#fff;
-  /* border: 3px solid #4285f4; */
 }
 
 .radio{
@@ -30,8 +50,11 @@
 
 #one:checked ~ .grid-brand #asus,
 #two:checked ~ .grid-brand #acer,
-#three:checked ~ .grid-brand #lenovo{
-  background-image: linear-gradient(to bottom, rgb(255, 117, 117), #f79424);
+#three:checked ~ .grid-brand #lenovo,
+#four:checked ~ .grid-brand #dell,
+#five:checked ~ .grid-brand #hp,
+#six:checked ~ .grid-brand #apple{
+  background: #f2f2f2;
   height: 100%;
   /* margin: 2rem; */
   padding: 4rem;
@@ -44,7 +67,10 @@
 
 #one:checked ~ .tabs #one-tab,
 #two:checked ~ .tabs #two-tab,
-#three:checked ~ .tabs #three-tab{
+#three:checked ~ .tabs #three-tab,
+#four:checked ~ .tabs #four-tab,
+#five:checked ~ .tabs #five-tab,
+#six:checked ~ .tabs #six-tab{
   background:#4285f4;
   color:#fff;
   /* border-top: 3px solid #000; */
@@ -109,7 +135,7 @@
   .grid-item p {
     font-size: 1rem;
     font-family: "Gilroy Regular";
-    margin: 0.6em 0 2rem;
+    margin: 0.6em 0 1rem;
     min-height: 1rem !important;
   }
 

@@ -10,7 +10,7 @@ if(!isset($_SESSION["user_name"]))
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <meta name="format-detection" content="telephone=no">
-        <title>Rythm</title>
+        <title>Electro</title>
         <!--reset css-->
         <link rel="stylesheet" href="css/login.css" />
         <link rel="stylesheet" href="css/contact.css" />
