@@ -56,16 +56,16 @@ if(!isset($_SESSION["user_name"]))
                 <ul>
                     <!--Logo-->
                     <li>
-                        <a href="user_index.php?id=<?php echo session_id()?>"><img src="./img/rythm.png" width=250px; height=90px; /></a>
+                        <a href="user_index.php?id=c<?php echo $_SESSION['id']?>"><img src="./img/rythm.png" width=250px; height=90px; /></a>
                     </li>
                     <!--Menu-->
                     <li>
-                        <a href="user_index.php?id=<?php echo session_id()?>">Home</a>
-                        <a href="user_index.php?id=<?php echo session_id()?>">Product</a>
+                        <a href="user_index.php?id=c<?php echo $_SESSION['id']?>">Home</a>
+                        <a href="user_index.php?id=<?php echo $_SESSION['id']?>">Product</a>
                         <!-- <li><form action="searchsong.php" id="search_song" method="post">
                             <input type="text" class="search__input" type="text" name="song_name" placeholder="Search a product"></form>
                         </li> -->
-                        <a href="about.php?id=<?php echo session_id()?>">About</a>
+                        <a href="about.php?id=c<?php echo $_SESSION['id']?>">About</a>
                     </li>
                     <!--User action-->
                     <li>

@@ -1,0 +1,140 @@
+
+.about-text {
+    max-width:40%; 
+    text-align: justify; 
+    margin: auto;
+    margin-bottom: 5rem;
+    font-family: 'Gilroy Medium';
+    font-size: 16px;
+    text-decoration: none;
+    color: #4d4d4d;
+}
+
+.about-text h1 {
+    margin-bottom: 1rem;
+}
+
+.about-text h2 {
+  margin-bottom: 1rem;
+}
+
+.about-text p {
+    margin-bottom: 1rem;
+}
+
+#google-container {
+    position: relative;
+    width: 40%;
+    height: 200px;
+    background-color: #e7eaf0;
+  }
+  @media only screen and (min-width: 768px) {
+    #google-container {
+      height: 300px;
+    }
+  }
+  @media only screen and (min-width: 1170px) {
+    #google-container {
+      height: 600px;
+    }
+  }
+  
+  #cd-google-map {
+    position: relative;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+  }
+  
+  #cd-google-map address {
+    position: absolute;
+    width: 40%;
+    bottom: 0;
+    padding: 1em 1em;
+    background-color: #4285f4;
+    color: white;
+    font-size: 13px;
+    font-size: 0.8125rem;
+    font-family: 'Gilroy Regular';
+  }
+  @media only screen and (min-width: 768px) {
+    #cd-google-map address {
+      font-size: 15px;
+      font-size: 0.9375rem;
+      text-align: center;
+    }
+  }
+  
+  #cd-zoom-in, #cd-zoom-out {
+    height: 32px;
+    width: 32px;
+    cursor: pointer;
+    margin-left: 10px;
+    background-color: #4285f4;
+    opacity: 0.9;
+    background-repeat: no-repeat;
+    background-size: 32px 64px;
+    background-image: url("../img/cd-icon-controller.svg");
+    transition: 0.5s;
+  }
+  .no-touch #cd-zoom-in:hover, .no-touch #cd-zoom-out:hover {
+    background-color: #1d67df;
+  }
+  @media only screen and (min-width: 768px) {
+    #cd-zoom-in, #cd-zoom-out {
+      margin-left: 50px;
+    }
+  }
+  
+  #cd-zoom-in {
+    background-position: 50% 0;
+    margin-top: 10px;
+    margin-bottom: 1px;
+  }
+  @media only screen and (min-width: 768px) {
+    #cd-zoom-in {
+      margin-top: 50px;
+    }
+  }
+  
+  #cd-zoom-out {
+    background-position: 50% -32px;
+  }
+
+  .custom-map-control-button {
+    background-color: #4285f4;
+    color: white;
+    border: 1px solid #4285f4;
+    border-radius: 2px;
+    box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+    margin: 10px;
+    padding: 0 1em;
+    font-family: 'Gilroy Medium';
+    font-size: 14px;
+    overflow: hidden;
+    height: 40px;
+    cursor: pointer;
+    text-align: center;
+    transition: 0.4s;
+  }
+  .custom-map-control-button:hover {
+    background-color: white;
+    color: #4285f4;
+    border: 1px solid #4285f4;
+  }
+
+    /*======================== FONT ===============================*/
+    @font-face {
+      font-family: "Gilroy Regular";
+      src: url("../fonts/gilroy-regular.otf") format("opentype");
+    }
+    
+    @font-face {
+      font-family: "Gilroy Medium";
+      src: url("../fonts/gilroy_medium.otf") format("opentype");
+    }
+    
+    @font-face {
+      font-family: "Gilroy Bold";
+      src: url("../fonts/gilroy-bold.otf") format("opentype");
+    }

@@ -52,7 +52,7 @@ if(isset($_POST['user_name']) && isset($_POST['password']))  {
 
                 if(isset($_SESSION['user_name'])) {
                     session_start();
-                    header("Location: user.php?id=".session_id());
+                    header("Location: user_redirect.php?id=c".$_SESSION['id']);
                     exit();
                 }
                 else {

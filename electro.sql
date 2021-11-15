@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 12, 2021 at 03:25 PM
+-- Generation Time: Nov 14, 2021 at 06:09 PM
 -- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.11
+-- PHP Version: 7.3.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -134,7 +134,15 @@ INSERT INTO `product` (`id`, `name`, `desc`, `sku`, `brand`, `cpu`, `ram`, `stor
 (3, 'Asus VivoBook', 'VivoBook', 'D712DA', 2, 'Intel 3250U', '8 GB', '256 GB SSD', 'AMD Radeon Graphics', '699', 2021, 'https://drscdn.500px.org/photo/1039898937/m%3D900/v2?sig=dd9e68bf6547da1369caad4084c6861246b5eb1dab10234939ee1cdf004a5db5', '2021-11-12 06:08:59'),
 (4, 'Lenovo IdeaPad Gaming 3', 'Gaming', '15ARH05', 1, 'Intel i7 4800H', '16 GB', '512 GB SSD', 'NVIDIA GeForce GTX 1650 Ti', '896', 2020, 'https://drscdn.500px.org/photo/1039898938/m%3D900/v2?sig=263f3f0dfe7618f5e1022926a369c66fe0ac6a7e5df309909598e2b75175853a', '2021-11-12 06:09:31'),
 (5, 'Lenovo ThinkPad ', 'ThinkPad', 'T590', 1, 'Intel i5-8265U', '16 GB', '512 GB SSD', 'Intel UHD Graphics 620', '499', 2020, 'https://drscdn.500px.org/photo/1039898939/m%3D900/v2?sig=e571961fedc8d5d23dfe122f1993d8474921458dd0d68b657970900d54964c13', '2021-11-12 06:09:50'),
-(6, 'Lenovo ThinkBook 15', 'ThinkBook', 'TB15', 1, 'Intel i5-10210U', '16 GB', '512 GB SSD', 'Intel UHD Graphics', '599', 2021, 'https://drscdn.500px.org/photo/1039898943/m%3D900/v2?sig=77765868b8a1ffdd3a88e0a910b4c2473f05e76d1991b54f5b8b0543c2065f49', '2021-11-12 06:10:22');
+(6, 'Lenovo ThinkBook 15', 'ThinkBook', 'TB15', 1, 'Intel i5-10210U', '16 GB', '512 GB SSD', 'Intel UHD Graphics', '599', 2021, 'https://drscdn.500px.org/photo/1039898943/m%3D900/v2?sig=77765868b8a1ffdd3a88e0a910b4c2473f05e76d1991b54f5b8b0543c2065f49', '2021-11-12 06:10:22'),
+(7, 'Acer Switch SF314', 'Switch', 'NX.A5UAA', 5, 'Intel i7-1165G7', '8GB', '512 GB SSD', 'Intel Iris Xe Graphics', '570', 2020, 'https://drscdn.500px.org/photo/1039952848/m%3D900/v2?sig=0e09d6cee05d4a10c9bac38a63a328e70994f27cabc26c0e1210726d664df9ec', '2021-11-13 11:01:26'),
+(8, 'Acer Nitro 5', 'Nitro', 'AN517', 5, 'Intel i5-11300H', '16GB', '512 GB SSD', 'NVIDIA GeForce GTX 1650', '730', 2019, 'https://drscdn.500px.org/photo/1039952850/m%3D900/v2?sig=945a76cf8e0bb5239c6cd9c5b0156cbc1ea6224471e684bc7886f9da015a86b7', '2021-11-13 10:44:09'),
+(9, 'Acer Chromebook 315', 'Chromebook', 'CB315', 5, 'Intel N4120', '4GB', '128 GB SSD', 'Intel UHD Graphics 600', '400', 2017, 'https://drscdn.500px.org/photo/1039952849/m%3D900/v2?sig=c86a32aeed8102ef10604cb2c171685ead113aec70a87f1b73da50db5844949f', '2021-11-13 10:44:09'),
+(10, 'DELL Inspiron 5406', 'Graphic', 'I5406MT', 3, 'Intel i7-1165G7', '8GB', '512 GB SSD', 'Intel Iris Xe Graphics', '460', 2017, 'https://drscdn.500px.org/photo/1039953407/m%3D900/v2?sig=6cb6485fc0b64198d63a7fb9904a8c2ea3fa2d105fbf61942188bf30e69b88d2', '2021-11-13 10:57:59'),
+(11, 'DELL Vostro 3500', 'Gaming', 'CAV153', 3, 'Intel i5-1135G7', '8GB', '256 GB SSD', 'Intel Iris Xe Graphics', '700', 2019, 'https://drscdn.500px.org/photo/1039953408/m%3D900/v2?sig=7df37aa0a885930ac2d0b81c05cc01cf31bee676b3198721645be216dee470ac', '2021-11-13 10:58:19'),
+(12, 'MacBook Air 2020', 'Macbook Air', 'A2337', 6, 'Apple M1 3.2 GHz', '8GB', '512 GB SSD', 'Integrated (Retina IPS)', '1249', 2020, 'https://drscdn.500px.org/photo/1039954744/m%3D900/v2?sig=fd7ce47aedda9b1de0fb3fe765dedea46207be9021d60c60ada35bf60c12fdc4', '2021-11-13 11:34:21'),
+(13, 'MacBook Pro 13\" 2020', 'Macbook Pro', 'A2251', 6, 'Intel i7-1068NG7', '16GB', '512 GB SSD', 'Iris Plus (Retina IPS)', '1999', 2020, 'https://drscdn.500px.org/photo/1039954742/m%3D900/v2?sig=d130c1e839a6db5732209abc1af0b92a9c9d53762a579ac451b8a331cdd7ac19', '2021-11-13 11:34:55'),
+(14, 'HP Pavilion x360', 'Graphic', '16Y38EA', 4, 'Intel i7-1065G7', '16 GB', '512 GB SSD', 'Intel Iris Plus Graphics', '600', 2021, '', '2021-11-13 11:41:08');
 
 -- --------------------------------------------------------
 
@@ -293,7 +301,7 @@ ALTER TABLE `payment_details`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `product_brand`

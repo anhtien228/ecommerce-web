@@ -43,7 +43,7 @@
                 <!--User action-->
                 <li>
                     <a href="login.php" class="btn blue"><span>Login</span></a>
-                    <a href="register.php" class="btn green" style="color: #fff;"><span>Register</span></a>
+                    <a href="register.php" class="btn green"><span>Register</span></a>
                 </li>
             </ul>
         </nav>
