@@ -257,12 +257,12 @@ jQuery(document).ready(function($){
 			infoWindow.open(map);
 			
 			var start = pos; // User location
-			var end = {lat: latitude, lng: longitude}; // Store location
+			var end = { lat: latitude, lng: longitude }; // Store location
 
 			var request = {
-				origin: start,
-				destination: end,
-				travelMode: 'DRIVING'
+				origin: pos,
+				destination: new google.maps.LatLng(latitude, longitude),
+				travelMode: google.maps.TravelMode.DRIVING
 			};
 
 			directionsService.route(request, function(result, status) {
@@ -270,7 +270,7 @@ jQuery(document).ready(function($){
 					directionsRenderer.setDirections(result);
 				}
 				else {
-					handleDirectionError(false, infoWindow, start);
+					handleDirectionError(true, infoWindow, start, status);
 				}
 			})
 
@@ -295,11 +295,11 @@ jQuery(document).ready(function($){
 		infoWindow.open(map);
 	  }
 
-	  function handleDirectionError(browserHasGeolocation, infoWindow, pos) {
+	  function handleDirectionError(browserHasGeolocation, infoWindow, pos, message) {
 		infoWindow.setPosition(pos);
 		infoWindow.setContent(
 		  browserHasGeolocation
-			? "Error: The Direction service failed."
+			? message
 			: "Error: Your service doesn't work properly."
 		);
 		infoWindow.open(map);

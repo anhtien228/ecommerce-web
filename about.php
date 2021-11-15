@@ -19,7 +19,7 @@ if (!isset($_SESSION["user_name"]))
     <link rel="stylesheet" href="css/about_us.css" />
 
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLuMe7gnKGLap0Srsk0JPfClS9fsIxxYU"></script>
     <script src="js/main.js"></script> <!-- Resource jQuery -->
     <script src="js/modernizr.js"></script> <!-- Modernizr -->
@@ -92,8 +92,8 @@ if (!isset($_SESSION["user_name"]))
         </div>
         <div class="about-text">
             <h1>Location</h1>
-            <h2>Showroom<h2>
-            <p>We hope you enjoy our products as much as we enjoy offering them to you. If you have any questions or comments, please don't hesitate to contact us!</p>
+            <h3>Showroom</h3>
+            <p>268 Ly Thuong Kiet, Ward 14, District 10, Ho Chi Minh City</p>
         </div>
     </section>
     <section id="cd-google-map">
