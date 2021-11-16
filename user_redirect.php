@@ -15,7 +15,7 @@ if(!isset($_SESSION["user_name"]))
         <link rel="stylesheet" href="css/contact.css"/>
         <link rel="stylesheet" href="css/flex_user.css" />
         <?php if($_SESSION["user_level"] == "User") {?>
-            <meta http-equiv="refresh" content="3;url=user_index.php?id=c<?php echo $_SESSION['id']?>"/>
+            <meta http-equiv="refresh" content="3;url=user_index.php?id=<?php echo $_SESSION['id']?>"/>
         <?php }?>
         <?php if($_SESSION["user_level"] == "Artist") {?>
             <meta http-equiv="refresh" content="3;url=artist_index.php"/>
@@ -44,7 +44,7 @@ if(!isset($_SESSION["user_name"]))
                     <li>
                     <a style='font-size:17px; align-self:center;' class='fas'>&#xf406;</a>
                     <a href="#"><?php echo $_SESSION['name']; ?></a>
-                    <a href="logout.php" style="margin-left: 2rem;" class="btn blue" onclick="return confirm('Are you sure you want to logout?')" ><span>Logout</span></a>
+                    <a href="logout.php" style="margin-left: 2rem;" class="btn bordered" onclick="return confirm('Are you sure you want to logout?')" ><span>Logout</span></a>
                     </li>
                 </ul>
             </nav>

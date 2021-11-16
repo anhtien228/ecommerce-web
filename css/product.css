@@ -6,14 +6,15 @@
 
 .menu {
   margin: 0 auto;
-  width: 100vw;
+  width: 100%;
   position: fixed;
   z-index: 1;
 }
 
 #main-page{
-    background-color: white;
+    background-color: #4285f4;
     background-position: center;
+    text-align: center;
     height: 350px;
     overflow: hidden;
 }
@@ -42,8 +43,9 @@
 
 .content-text {
   text-align: center;
+  justify-content: center;
   position: absolute;
-  top: 25%;
+  top: 23%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -60,7 +62,7 @@
   font-family: "Gilroy Bold";
   font-size: 40px;
   text-decoration: none;
-  color: #1d1d1d;
+  color: white;
   display: inline;
 }
 
@@ -68,7 +70,7 @@
   font-family: "Gilroy Medium";
   font-size: 16px;
   text-decoration: none;
-  color: #4d4d4d;
+  color: white;
 }
 
 

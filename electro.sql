@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2021 at 06:09 PM
+-- Generation Time: Nov 16, 2021 at 03:12 PM
 -- Server version: 10.4.21-MariaDB
--- PHP Version: 7.3.31
+-- PHP Version: 8.0.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -25,6 +25,20 @@ DELIMITER $$
 --
 -- Procedures
 --
+CREATE DEFINER=`root`@`localhost` PROCEDURE `calCartQuantity` (IN `userSessionID` INT)  BEGIN
+SELECT A.*, B.*
+FROM
+	shopping_session A
+LEFT JOIN (
+    SELECT
+    	session_id,
+		SUM(quantity) as cart_quantity
+    FROM cart_item
+    GROUP BY session_id) B
+ON A.id = B.session_id
+WHERE A.user_id = userSessionID;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `getLaptopProducts` ()  BEGIN 
 SELECT  product.name as productName,
 		product.desc as productDesc,
@@ -54,7 +68,7 @@ CREATE TABLE `cart_item` (
   `id` int(11) NOT NULL,
   `session_id` int(11) DEFAULT NULL,
   `product_id` int(11) DEFAULT NULL,
-  `quantity` int(11) DEFAULT NULL,
+  `quantity` int(5) NOT NULL DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -67,7 +81,7 @@ CREATE TABLE `cart_item` (
 CREATE TABLE `order_details` (
   `id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
-  `total` decimal(10,0) DEFAULT NULL,
+  `total` decimal(10,0) NOT NULL,
   `payment_id` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -97,7 +111,6 @@ CREATE TABLE `payment_details` (
   `amount` int(11) DEFAULT NULL,
   `provider` varchar(20) DEFAULT NULL,
   `total` decimal(10,0) DEFAULT NULL,
-  `payment_id` int(11) DEFAULT NULL,
   `method` enum('visa','mastercard','cash') DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -111,16 +124,16 @@ CREATE TABLE `payment_details` (
 CREATE TABLE `product` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `desc` text DEFAULT NULL,
-  `sku` varchar(20) DEFAULT NULL,
-  `brand` int(11) DEFAULT NULL,
-  `cpu` varchar(30) DEFAULT NULL,
-  `ram` varchar(30) DEFAULT NULL,
-  `storage` varchar(20) DEFAULT NULL,
-  `graphic` varchar(100) DEFAULT NULL,
-  `price` decimal(10,0) DEFAULT NULL,
-  `year` int(11) DEFAULT NULL,
-  `photo` varchar(255) NOT NULL,
+  `desc` text NOT NULL,
+  `sku` varchar(20) NOT NULL,
+  `brand` int(11) NOT NULL,
+  `cpu` varchar(30) NOT NULL,
+  `ram` varchar(30) NOT NULL,
+  `storage` varchar(20) NOT NULL,
+  `graphic` varchar(100) NOT NULL,
+  `price` decimal(10,0) NOT NULL,
+  `year` int(11) NOT NULL,
+  `photo` text NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -142,7 +155,7 @@ INSERT INTO `product` (`id`, `name`, `desc`, `sku`, `brand`, `cpu`, `ram`, `stor
 (11, 'DELL Vostro 3500', 'Gaming', 'CAV153', 3, 'Intel i5-1135G7', '8GB', '256 GB SSD', 'Intel Iris Xe Graphics', '700', 2019, 'https://drscdn.500px.org/photo/1039953408/m%3D900/v2?sig=7df37aa0a885930ac2d0b81c05cc01cf31bee676b3198721645be216dee470ac', '2021-11-13 10:58:19'),
 (12, 'MacBook Air 2020', 'Macbook Air', 'A2337', 6, 'Apple M1 3.2 GHz', '8GB', '512 GB SSD', 'Integrated (Retina IPS)', '1249', 2020, 'https://drscdn.500px.org/photo/1039954744/m%3D900/v2?sig=fd7ce47aedda9b1de0fb3fe765dedea46207be9021d60c60ada35bf60c12fdc4', '2021-11-13 11:34:21'),
 (13, 'MacBook Pro 13\" 2020', 'Macbook Pro', 'A2251', 6, 'Intel i7-1068NG7', '16GB', '512 GB SSD', 'Iris Plus (Retina IPS)', '1999', 2020, 'https://drscdn.500px.org/photo/1039954742/m%3D900/v2?sig=d130c1e839a6db5732209abc1af0b92a9c9d53762a579ac451b8a331cdd7ac19', '2021-11-13 11:34:55'),
-(14, 'HP Pavilion x360', 'Graphic', '16Y38EA', 4, 'Intel i7-1065G7', '16 GB', '512 GB SSD', 'Intel Iris Plus Graphics', '600', 2021, '', '2021-11-13 11:41:08');
+(14, 'HP Pavilion x360', 'Graphic', '16Y38EA', 4, 'Intel i7-1065G7', '16 GB', '512 GB SSD', 'Intel Iris Plus Graphics', '600', 2021, 'https://lh3.googleusercontent.com/HKeGSZak5X98zdQLJe4ONIuc9KTFviGaTxTDI4sSIfrAfagbBb8W4_0BsyhdTc__r-pG1PebRPJfCJqqOMvk1COwoh_E-pBMyaFijJv6Kp6ckccR0215GOIynCs0W2ArBPZX2tQ9ig=w2400?source=screenshot.guru\"> <img src=\"https://lh3.googleusercontent.com/HKeGSZa', '2021-11-16 09:14:59');
 
 -- --------------------------------------------------------
 
@@ -178,9 +191,16 @@ INSERT INTO `product_brand` (`id`, `name`, `desc`, `created_at`) VALUES
 CREATE TABLE `shopping_session` (
   `id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
-  `total` decimal(10,0) DEFAULT NULL,
+  `total` decimal(10,0) NOT NULL DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `shopping_session`
+--
+
+INSERT INTO `shopping_session` (`id`, `user_id`, `total`, `created_at`) VALUES
+(1, 1, '0', '2021-11-16 08:54:16');
 
 -- --------------------------------------------------------
 
@@ -208,7 +228,7 @@ INSERT INTO `user` (`id`, `username`, `password`, `firstname`, `lastname`, `addr
 (1, 'jason123@gmail.com', '$2y$10$bj1LmM5.MaNSbd2NC2CkD.NBaOxOJMnkD.eK7.iLQqJx2nmKc.DgC', 'Jason', 'Nguyen', '5 Ham Nghi, District 1', 931251260, NULL, '2021-01-24 17:00:00'),
 (2, 'duycse2k@gmail.com', '$2y$10$yRrusuRiqm2xiNwrBQbMve.oxygt.p/60zJjGlyTpTr5OkddbsYm2', 'Duy', 'Nguyen Vinh', '106 Lexington, New York City', 903591012, NULL, '2021-05-02 17:00:00'),
 (3, 'nataliedang@gmail.com', '$2y$10$WXsWZPqogohLWBQd/cU8BOZleyp1Vyj4kRWqho1ODZiUMElD3cDqS', 'Natalie', 'Dang', '206 Ly Thuong Kiet, District 10', 938120677, NULL, '2021-07-03 17:00:00'),
-(10, 'datien228@gmail.com', '$2y$10$lH/vueMAhoG57keFZ7aRo.1itA53LViZsNyzNZL5mTHXrNqBLXGqe', 'Tien', 'Doan', NULL, NULL, '2003-01-01', '2021-11-11 06:34:04');
+(11, 'd.atien228@gmail.com', '$2y$10$oONwELxl64N5hS.6lGGVweXtF.EBvf1bVCdPZTBEs9oqYfYTmutFO', 'Tien', 'Doan', NULL, NULL, '2003-01-01', '2021-11-16 08:27:44');
 
 --
 -- Indexes for dumped tables
@@ -227,6 +247,7 @@ ALTER TABLE `cart_item`
 --
 ALTER TABLE `order_details`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `customer_order_index` (`id`,`user_id`) USING BTREE,
   ADD KEY `order_details_ibfk_5` (`user_id`),
   ADD KEY `order_details_ibfk_6` (`payment_id`);
 
@@ -248,6 +269,7 @@ ALTER TABLE `payment_details`
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `sku_index` (`id`,`sku`) USING BTREE,
   ADD KEY `product_ibfk_1` (`brand`);
 
 --
@@ -261,6 +283,7 @@ ALTER TABLE `product_brand`
 --
 ALTER TABLE `shopping_session`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `session_index` (`id`,`user_id`) USING BTREE,
   ADD KEY `shopping_session_ibfk_2` (`user_id`);
 
 --
@@ -277,7 +300,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `cart_item`
 --
 ALTER TABLE `cart_item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `order_details`
@@ -313,13 +336,13 @@ ALTER TABLE `product_brand`
 -- AUTO_INCREMENT for table `shopping_session`
 --
 ALTER TABLE `shopping_session`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables
@@ -337,12 +360,8 @@ ALTER TABLE `cart_item`
 -- Constraints for table `order_details`
 --
 ALTER TABLE `order_details`
-  ADD CONSTRAINT `order_details_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `order_details_ibfk_2` FOREIGN KEY (`payment_id`) REFERENCES `payment_details` (`id`),
-  ADD CONSTRAINT `order_details_ibfk_3` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `order_details_ibfk_4` FOREIGN KEY (`payment_id`) REFERENCES `payment_details` (`id`),
-  ADD CONSTRAINT `order_details_ibfk_5` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `order_details_ibfk_6` FOREIGN KEY (`payment_id`) REFERENCES `payment_details` (`id`);
+  ADD CONSTRAINT `order_details_ibfk_5` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
+  ADD CONSTRAINT `order_details_ibfk_6` FOREIGN KEY (`payment_id`) REFERENCES `payment_details` (`id`) ON DELETE SET NULL ON UPDATE SET NULL;
 
 --
 -- Constraints for table `order_items`
@@ -361,8 +380,7 @@ ALTER TABLE `product`
 -- Constraints for table `shopping_session`
 --
 ALTER TABLE `shopping_session`
-  ADD CONSTRAINT `shopping_session_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `shopping_session_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+  ADD CONSTRAINT `shopping_session_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE SET NULL;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

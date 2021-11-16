@@ -1,4 +1,9 @@
 
+#about-us {
+  padding-top: 2rem;
+  box-shadow: 0 -4px 8px 0 rgba(0, 0, 0, 0.4);
+}
+
 .about-text {
     max-width:40%; 
     text-align: justify; 
@@ -117,6 +122,39 @@
     text-align: center;
     transition: 0.4s;
   }
+
+  .custom-map-control-button:disabled{
+    background-color: #f2f2f2;
+    color: #a3a3a3;
+    border: 1px solid #f2f2f2;
+    border-radius: 2px;
+    box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+    margin: 10px;
+    padding: 0 1em;
+    font-family: 'Gilroy Medium';
+    font-size: 14px;
+    overflow: hidden;
+    height: 40px;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  .custom-map-control-button:disabled:hover{
+    background-color: #f2f2f2;
+    color: #a3a3a3;
+    border: 1px solid #f2f2f2;
+    border-radius: 2px;
+    box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+    margin: 10px;
+    padding: 0 1em;
+    font-family: 'Gilroy Medium';
+    font-size: 14px;
+    overflow: hidden;
+    height: 40px;
+    cursor: pointer;
+    text-align: center;
+  }
+
   .custom-map-control-button:hover {
     background-color: white;
     color: #4285f4;

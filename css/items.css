@@ -3,7 +3,11 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  height: 4.5rem;
   padding: 10px 20px;
+  border-bottom: 1px solid #1d1d1d;
+  box-shadow: 0 -4px 8px 0 rgba(0, 0, 0, 0.4);
+  z-index: 100;
   /* background-image: linear-gradient(to bottom, #4285f4, #0a3b88); */
 }
 
@@ -24,7 +28,7 @@
   /* margin:0px 2px; */
   background:#fff;
   color: #1d1d1d;
-  flex-basis: 1rem;
+  flex-basis: 100px;
   text-align: center;
   transition: 0.4s;
 }

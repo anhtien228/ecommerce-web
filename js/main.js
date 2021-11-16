@@ -4,6 +4,8 @@ jQuery(document).ready(function($){
 		longitude = 106.6576846131169,
 		map_zoom = 16;
 
+	var current = new google.maps.LatLng(latitude, longitude);
+
 	//google map custom marker icon - .png fallback for IE11
 	var is_internetExplorer11= navigator.userAgent.toLowerCase().indexOf('trident') > -1;
 	var marker_url = ( is_internetExplorer11 ) ? 'img/cd-icon-location.png' : 'img/cd-icon-location.svg';
@@ -232,6 +234,7 @@ jQuery(document).ready(function($){
 	infoWindow = new google.maps.InfoWindow();
 
 	const locationButton = document.createElement("button");
+	const directionButton = document.createElement("button");
 
 	// Rendering direction
 	var directionsService = new google.maps.DirectionsService();
@@ -240,7 +243,12 @@ jQuery(document).ready(function($){
 
 	locationButton.textContent = "Your location";
 	locationButton.classList.add("custom-map-control-button");
+	directionButton.textContent = "Get direction";
+	directionButton.classList.add("custom-map-control-button");
+	directionButton.setAttribute("disabled", "true");
+	
 	map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
+	map.controls[google.maps.ControlPosition.TOP_CENTER].push(directionButton);
 
 	locationButton.addEventListener("click", () => {
 	  // Try HTML5 geolocation.
@@ -256,23 +264,8 @@ jQuery(document).ready(function($){
 			infoWindow.setContent("Location found");
 			infoWindow.open(map);
 			
-			var start = pos; // User location
-			var end = { lat: latitude, lng: longitude }; // Store location
-
-			var request = {
-				origin: pos,
-				destination: new google.maps.LatLng(latitude, longitude),
-				travelMode: google.maps.TravelMode.DRIVING
-			};
-
-			directionsService.route(request, function(result, status) {
-				if (status == 'OK') {
-					directionsRenderer.setDirections(result);
-				}
-				else {
-					handleDirectionError(true, infoWindow, start, status);
-				}
-			})
+			current = pos
+			directionButton.disabled = false;
 
 		  },
 		  () => {
@@ -284,6 +277,28 @@ jQuery(document).ready(function($){
 		handleLocationError(false, infoWindow, map.getCenter());
 	  }
 	});
+
+	directionButton.addEventListener("click", () => {
+		// Try HTML5 geolocation.
+		var start = current; // User location
+
+		var request = {
+			origin: current,
+			destination: new google.maps.LatLng(latitude, longitude),
+			travelMode: google.maps.TravelMode.DRIVING
+		};
+
+		directionsService.route(request, function(result, status) {
+			if (status == 'OK') {
+				marker.setMap(null);
+				infoWindow.close();
+				directionsRenderer.setDirections(result);
+			}
+			else {
+				handleDirectionError(true, infoWindow, start, status);
+			}
+		})
+	  });
 
 	function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 		infoWindow.setPosition(pos);
@@ -299,8 +314,8 @@ jQuery(document).ready(function($){
 		infoWindow.setPosition(pos);
 		infoWindow.setContent(
 		  browserHasGeolocation
-			? message
-			: "Error: Your service doesn't work properly."
+			? "Error: Direction service failed"
+			: "Error: Your browser doesn't support direction."
 		);
 		infoWindow.open(map);
 	  }

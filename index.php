@@ -38,7 +38,7 @@
                     <!-- <li><form action="searchsong.php" id="search_song" method="post">
                         <input type="text" class="search__input" type="text" name="song_name" placeholder="Search a product"></form>
                     </li> -->
-                    <a href="about.php">About</a>
+                    <a href="about2.php">About</a>
                 </li>
                 <!--User action-->
                 <li>
