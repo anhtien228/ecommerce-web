@@ -58,7 +58,7 @@ if(!isset($_SESSION["user_name"]))
                 <h1>Welcome <?php echo $_SESSION['name']; ?>!</h1>
                 <br>
                 <p>You have successfully logged in!</p>
-                <p>Redirecting to home page . . .</h1>
+                <p>Redirecting to home page . . .</p>
             </div>
 
         </section>
