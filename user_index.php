@@ -12,6 +12,10 @@ if(!isset($_SESSION["user_name"]))
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <meta name="format-detection" content="telephone=no">
         <title>Electro</title>
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
         <!--reset css-->
         <link rel="stylesheet" href="css/product.css"/>
         <link rel="stylesheet" href="css/flex_user.css"/>
@@ -266,9 +270,10 @@ if(!isset($_SESSION["user_name"]))
         </div>
         </section>
 
-        <!--Footer-->
-        <div class="footer">
-            <p>Electro</p>
-        </div>
-
+        <?php
+        include "libs/footer.php"; // Using footer file here
+        ?>
+        <!-- Bootstrap Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    </body>
     </html>
