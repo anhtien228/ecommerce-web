@@ -89,6 +89,18 @@
   animation: fadein .8s;
 }
 
+.grid-list {
+  background: #f2f2f2;
+  height: 100%;
+  /* margin: 2rem; */
+  padding: 4rem;
+  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15%, 22%));
+  grid-template-rows: repeat(auto-fit, minmax(1fr, 2fr));
+  grid-gap: 4.1rem
+}
+
   @keyframes fadein {
     from {
         opacity:0;

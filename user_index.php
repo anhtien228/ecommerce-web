@@ -25,32 +25,32 @@ if(!isset($_SESSION["user_name"]))
     </head>
     <body>
         <?php
-        include "db_conn.php"; // Using database connection file here
+            include "db_conn.php"; // Using database connection file here
 
-        $sql = "CALL getLaptopProducts";
-        $stmt = $conn->prepare($sql); 
-        $stmt->execute();
-        $records = $stmt->get_result(); // fetch data from database
-        while($data = mysqli_fetch_assoc($records)) {
-            if ($data['productBrand'] == 'Asus') {
-                $asus[] = $data;
+            $sql = "CALL getLaptopProducts";
+            $stmt = $conn->prepare($sql); 
+            $stmt->execute();
+            $records = $stmt->get_result(); // fetch data from database
+            while($data = mysqli_fetch_assoc($records)) {
+                if ($data['productBrand'] == 'Asus') {
+                    $asus[] = $data;
+                }
+                else if ($data['productBrand'] == 'Acer') {
+                    $acer[] = $data;
+                }
+                else if ($data['productBrand'] == 'Lenovo') {
+                    $lenovo[] = $data;
+                }
+                else if ($data['productBrand'] == 'Dell') {
+                    $dell[] = $data;
+                }
+                else if ($data['productBrand'] == 'Apple') {
+                    $apple[] = $data;
+                }
+                else if ($data['productBrand'] == 'HP') {
+                    $hp[] = $data;
+                }
             }
-            else if ($data['productBrand'] == 'Acer') {
-                $acer[] = $data;
-            }
-            else if ($data['productBrand'] == 'Lenovo') {
-                $lenovo[] = $data;
-            }
-            else if ($data['productBrand'] == 'Dell') {
-                $dell[] = $data;
-            }
-            else if ($data['productBrand'] == 'Apple') {
-                $apple[] = $data;
-            }
-            else if ($data['productBrand'] == 'HP') {
-                $hp[] = $data;
-            }
-        }
         ?>
         <!--Navigation bar-->
         <div class="menu">
@@ -130,8 +130,8 @@ if(!isset($_SESSION["user_name"]))
                 <label class="tab" id="four-tab" for="four">Dell</label>
                 <label class="tab" id="five-tab" for="five">HP</label>
                 <label class="tab" id="six-tab" for="six">Apple</label>
-                <div id="search-bar"><form action="searchsong.php" method="post">
-                    <input type="text" class="search__input" type="text" name="song_name" placeholder="Search a product">
+                <div id="search-bar"><form action="search_product.php" method="post">
+                    <input type="text" class="search__input" type="text" name="product_name" placeholder="Search a product">
                 </form>
                 </div>
             </div>
