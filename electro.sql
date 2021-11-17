@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 16, 2021 at 03:12 PM
+-- Generation Time: Nov 17, 2021 at 12:22 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -54,6 +54,31 @@ SELECT  product.name as productName,
         product_brand.desc as productOrigin
 FROM product
 INNER JOIN product_brand ON product.brand=product_brand.id;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getProductsByName` (IN `productNameInput` VARCHAR(255))  BEGIN
+SELECT
+	product.name as productName,
+	product.desc as productDesc,
+    product.sku as productSKU,
+	product.cpu as productCPU,
+    product.ram as productRAM,
+    product.storage as productSto,
+    product.graphic as productGPU,
+    product.price as productPrice,
+    product.year as productYear,
+    product.photo as productPhoto,
+    product_brand.name as productBrand,
+    product_brand.desc as productOrigin
+FROM
+	product
+INNER JOIN
+	product_brand
+ON
+	product_brand.id = product.brand
+WHERE
+	product.name
+LIKE CONCAT('%', productNameInput, '%');
 END$$
 
 DELIMITER ;
@@ -142,19 +167,19 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `name`, `desc`, `sku`, `brand`, `cpu`, `ram`, `storage`, `graphic`, `price`, `year`, `photo`, `created_at`) VALUES
-(1, 'Asus ROG Strix', 'Gaming', 'G712LWS', 2, 'i7-10875H', '16 GB', '1000 GB SSD', 'NVIDIA GeForce RTX 2070 SUPER', '896', 2020, 'https://drscdn.500px.org/photo/1039898936/m%3D900/v2?sig=ea03aff276e4637d75f73dd97bbc60a7ee4325940c234cfbb633ec103458c033', '2021-11-12 06:07:48'),
+(1, 'Asus ROG Strix', 'Gaming', 'G712LWS', 2, 'Intel i7-10875H', '16 GB', '1000 GB SSD', 'NVIDIA GeForce RTX 2070 SUPER', '896', 2020, 'https://drscdn.500px.org/photo/1039898936/m%3D900/v2?sig=ea03aff276e4637d75f73dd97bbc60a7ee4325940c234cfbb633ec103458c033', '2021-11-16 18:21:53'),
 (2, 'Asus Chromebook', 'Chromebook', 'C423NA', 2, 'Intel N3350', '4 GB', '64 GB eMMC', 'Intel HD Graphics 500', '749', 2020, 'https://drscdn.500px.org/photo/1039898934/m%3D900/v2?sig=7ba1f8818b53e8d32e7036c9f6f49458e83fa4ac05f17cc75930858833b22429', '2021-11-12 06:08:30'),
 (3, 'Asus VivoBook', 'VivoBook', 'D712DA', 2, 'Intel 3250U', '8 GB', '256 GB SSD', 'AMD Radeon Graphics', '699', 2021, 'https://drscdn.500px.org/photo/1039898937/m%3D900/v2?sig=dd9e68bf6547da1369caad4084c6861246b5eb1dab10234939ee1cdf004a5db5', '2021-11-12 06:08:59'),
 (4, 'Lenovo IdeaPad Gaming 3', 'Gaming', '15ARH05', 1, 'Intel i7 4800H', '16 GB', '512 GB SSD', 'NVIDIA GeForce GTX 1650 Ti', '896', 2020, 'https://drscdn.500px.org/photo/1039898938/m%3D900/v2?sig=263f3f0dfe7618f5e1022926a369c66fe0ac6a7e5df309909598e2b75175853a', '2021-11-12 06:09:31'),
 (5, 'Lenovo ThinkPad ', 'ThinkPad', 'T590', 1, 'Intel i5-8265U', '16 GB', '512 GB SSD', 'Intel UHD Graphics 620', '499', 2020, 'https://drscdn.500px.org/photo/1039898939/m%3D900/v2?sig=e571961fedc8d5d23dfe122f1993d8474921458dd0d68b657970900d54964c13', '2021-11-12 06:09:50'),
 (6, 'Lenovo ThinkBook 15', 'ThinkBook', 'TB15', 1, 'Intel i5-10210U', '16 GB', '512 GB SSD', 'Intel UHD Graphics', '599', 2021, 'https://drscdn.500px.org/photo/1039898943/m%3D900/v2?sig=77765868b8a1ffdd3a88e0a910b4c2473f05e76d1991b54f5b8b0543c2065f49', '2021-11-12 06:10:22'),
-(7, 'Acer Switch SF314', 'Switch', 'NX.A5UAA', 5, 'Intel i7-1165G7', '8GB', '512 GB SSD', 'Intel Iris Xe Graphics', '570', 2020, 'https://drscdn.500px.org/photo/1039952848/m%3D900/v2?sig=0e09d6cee05d4a10c9bac38a63a328e70994f27cabc26c0e1210726d664df9ec', '2021-11-13 11:01:26'),
-(8, 'Acer Nitro 5', 'Nitro', 'AN517', 5, 'Intel i5-11300H', '16GB', '512 GB SSD', 'NVIDIA GeForce GTX 1650', '730', 2019, 'https://drscdn.500px.org/photo/1039952850/m%3D900/v2?sig=945a76cf8e0bb5239c6cd9c5b0156cbc1ea6224471e684bc7886f9da015a86b7', '2021-11-13 10:44:09'),
-(9, 'Acer Chromebook 315', 'Chromebook', 'CB315', 5, 'Intel N4120', '4GB', '128 GB SSD', 'Intel UHD Graphics 600', '400', 2017, 'https://drscdn.500px.org/photo/1039952849/m%3D900/v2?sig=c86a32aeed8102ef10604cb2c171685ead113aec70a87f1b73da50db5844949f', '2021-11-13 10:44:09'),
-(10, 'DELL Inspiron 5406', 'Graphic', 'I5406MT', 3, 'Intel i7-1165G7', '8GB', '512 GB SSD', 'Intel Iris Xe Graphics', '460', 2017, 'https://drscdn.500px.org/photo/1039953407/m%3D900/v2?sig=6cb6485fc0b64198d63a7fb9904a8c2ea3fa2d105fbf61942188bf30e69b88d2', '2021-11-13 10:57:59'),
-(11, 'DELL Vostro 3500', 'Gaming', 'CAV153', 3, 'Intel i5-1135G7', '8GB', '256 GB SSD', 'Intel Iris Xe Graphics', '700', 2019, 'https://drscdn.500px.org/photo/1039953408/m%3D900/v2?sig=7df37aa0a885930ac2d0b81c05cc01cf31bee676b3198721645be216dee470ac', '2021-11-13 10:58:19'),
-(12, 'MacBook Air 2020', 'Macbook Air', 'A2337', 6, 'Apple M1 3.2 GHz', '8GB', '512 GB SSD', 'Integrated (Retina IPS)', '1249', 2020, 'https://drscdn.500px.org/photo/1039954744/m%3D900/v2?sig=fd7ce47aedda9b1de0fb3fe765dedea46207be9021d60c60ada35bf60c12fdc4', '2021-11-13 11:34:21'),
-(13, 'MacBook Pro 13\" 2020', 'Macbook Pro', 'A2251', 6, 'Intel i7-1068NG7', '16GB', '512 GB SSD', 'Iris Plus (Retina IPS)', '1999', 2020, 'https://drscdn.500px.org/photo/1039954742/m%3D900/v2?sig=d130c1e839a6db5732209abc1af0b92a9c9d53762a579ac451b8a331cdd7ac19', '2021-11-13 11:34:55'),
+(7, 'Acer Switch SF314', 'Switch', 'NX.A5UAA', 5, 'Intel i7-1165G7', '8 GB', '512 GB SSD', 'Intel Iris Xe Graphics', '570', 2020, 'https://drscdn.500px.org/photo/1039952848/m%3D900/v2?sig=0e09d6cee05d4a10c9bac38a63a328e70994f27cabc26c0e1210726d664df9ec', '2021-11-16 18:22:30'),
+(8, 'Acer Nitro 5', 'Nitro', 'AN517', 5, 'Intel i5-11300H', '16 GB', '512 GB SSD', 'NVIDIA GeForce GTX 1650', '730', 2019, 'https://drscdn.500px.org/photo/1039952850/m%3D900/v2?sig=945a76cf8e0bb5239c6cd9c5b0156cbc1ea6224471e684bc7886f9da015a86b7', '2021-11-16 18:22:40'),
+(9, 'Acer Chromebook 315', 'Chromebook', 'CB315', 5, 'Intel N4120', '4 GB', '128 GB SSD', 'Intel UHD Graphics 600', '400', 2017, 'https://drscdn.500px.org/photo/1039952849/m%3D900/v2?sig=c86a32aeed8102ef10604cb2c171685ead113aec70a87f1b73da50db5844949f', '2021-11-16 18:23:45'),
+(10, 'DELL Inspiron 5406', 'Graphic', 'I5406MT', 3, 'Intel i7-1165G7', '8 GB', '512 GB SSD', 'Intel Iris Xe Graphics', '460', 2017, 'https://drscdn.500px.org/photo/1039953407/m%3D900/v2?sig=6cb6485fc0b64198d63a7fb9904a8c2ea3fa2d105fbf61942188bf30e69b88d2', '2021-11-16 18:23:45'),
+(11, 'DELL Vostro 3500', 'Gaming', 'CAV153', 3, 'Intel i5-1135G7', '8 GB', '256 GB SSD', 'Intel Iris Xe Graphics', '700', 2019, 'https://drscdn.500px.org/photo/1039953408/m%3D900/v2?sig=7df37aa0a885930ac2d0b81c05cc01cf31bee676b3198721645be216dee470ac', '2021-11-16 18:23:45'),
+(12, 'MacBook Air 2020', 'Macbook Air', 'A2337', 6, 'Apple M1 3.2 GHz', '8 GB', '512 GB SSD', 'Integrated (Retina IPS)', '1249', 2020, 'https://drscdn.500px.org/photo/1039954744/m%3D900/v2?sig=fd7ce47aedda9b1de0fb3fe765dedea46207be9021d60c60ada35bf60c12fdc4', '2021-11-16 18:23:45'),
+(13, 'MacBook Pro 13\" 2020', 'Macbook Pro', 'A2251', 6, 'Intel i7-1068NG7', '16 GB', '512 GB SSD', 'Iris Plus (Retina IPS)', '1999', 2020, 'https://drscdn.500px.org/photo/1039954742/m%3D900/v2?sig=d130c1e839a6db5732209abc1af0b92a9c9d53762a579ac451b8a331cdd7ac19', '2021-11-16 18:23:45'),
 (14, 'HP Pavilion x360', 'Graphic', '16Y38EA', 4, 'Intel i7-1065G7', '16 GB', '512 GB SSD', 'Intel Iris Plus Graphics', '600', 2021, 'https://lh3.googleusercontent.com/HKeGSZak5X98zdQLJe4ONIuc9KTFviGaTxTDI4sSIfrAfagbBb8W4_0BsyhdTc__r-pG1PebRPJfCJqqOMvk1COwoh_E-pBMyaFijJv6Kp6ckccR0215GOIynCs0W2ArBPZX2tQ9ig=w2400?source=screenshot.guru\"> <img src=\"https://lh3.googleusercontent.com/HKeGSZa', '2021-11-16 09:14:59');
 
 -- --------------------------------------------------------
