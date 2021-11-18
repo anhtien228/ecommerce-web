@@ -5,8 +5,8 @@
   align-items: center;
   height: 4.5rem;
   padding: 10px 20px;
-  border-bottom: 1px solid #1d1d1d;
-  box-shadow: 0 -4px 8px 0 rgba(0, 0, 0, 0.4);
+  border-bottom: 0.5px solid #1d1d1d;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.4);
   z-index: 100;
   /* background-image: linear-gradient(to bottom, #4285f4, #0a3b88); */
 }
@@ -98,7 +98,8 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(15%, 22%));
   grid-template-rows: repeat(auto-fit, minmax(1fr, 2fr));
-  grid-gap: 4.1rem
+  grid-gap: 4.1rem;
+  animation: fadein .8s;
 }
 
   @keyframes fadein {

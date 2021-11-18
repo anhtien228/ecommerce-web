@@ -30,10 +30,10 @@ it will open the index.php which is the home page of website.
 - [ ] Login/Logout function for staffs (WIP)
 - [x] Show address of different stores with Google Maps (80%, only for 1 store now)[^1]
 - [x] Show location of user right in the website
-- [ ] \(Optional) Show direction from user's location to store's location (WIP)[^2]
-- [x] Apply responsive design to website (product grid, navbar, google map)
+- [x] \(Optional) Show direction from user's location to store's location (WIP)
+- [ ] Apply responsive design to website (product grid, navbar, google map)
 - [x] Use appropriate colors to website (minimal design and color palette)
-- [x] Navigation bar, logo, footer (footer will be improved later)
+- [x] Navigation bar, logo, footer
 
 [^1]: Custom Google Map using API (billing service): https://codyhouse.co/gem/custom-google-map
 [^2]: Direction Service on Google Map Platform: https://developers.google.com/maps/documentation/javascript/directions
