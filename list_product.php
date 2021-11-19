@@ -85,6 +85,7 @@ if(!isset($_SESSION["user_name"]))
                         <span class="item-price">$896</span>
                         <span class="item-quantity">Quantity: 01</span>
                     </li>
+                    </ul>
 
                     <a href="#" class="checkout-button">Checkout</a>
                 </div> <!--end shopping-cart -->
