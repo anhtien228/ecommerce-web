@@ -1,48 +1,8 @@
-<div class="bg-light px-lg-5 py-5">
+<div class="bg-light px-3 px-lg-5 py-4 py-lg-5">
     <div class="container">
-        <!--Form-->
-        <div>
-            <form action="/user_index.php" method="get">
-                <!--Select brand-->
-                <div class="mb-3">
-                    <label for="formGroupExampleInput" class="form-label">Brand Name:</label>
-                    <select class="form-select" aria-label="Default select example" name="brand">
-                        <option value="all">All</option>
-                        <option value="asus">Asus</option>
-                        <option value="acer">Acer</option>
-                        <option value="lenovo">Lenovo</option>
-                        <option value="dell">Dell</option>
-                        <option value="apple">Apple</option>
-                        <option value="hp">HP</option>
-                    </select>
-                </div>
-
-                <!--Select OS (This function does not work at now)-->
-                <div class="mb-3">
-                    <label for="formGroupExampleInput" class="form-label">OS:(This function does not work at now)</label>
-                    <select class="form-select" aria-label="Default select example" name="os">
-                        <option selected>All</option>
-                        <option value="windows">Windows</option>
-                        <option value="mac">Mac OS</option>
-                    </select>
-                </div>
-
-                <!--Select price (This function does not work at now)-->
-                <div class="mb-3">
-                    <label for="formGroupExampleInput" class="form-label">Price:(This function does not work at now)</label>
-                    <select class="form-select" aria-label="Default select example" name="os">
-                        <option selected>All</option>
-                        <option value="windows">Windows</option>
-                        <option value="mac">Mac OS</option>
-                    </select>
-                </div>
-
-                <!--Submit button-->
-                <div class="mb-3">
-                    <button type="submit" class="btn btn-primary">Select</button>
-                </div>
-            </form>
-        </div>
+        <?php
+        include "libs/form_categorize_product.php";
+        ?>
 
         <!--Product list-->
         <div class="row mt-5">
