@@ -22,14 +22,15 @@ if (!isset($_SESSION["user_name"]))
     <link rel="stylesheet" href="css/flex_user.css"/>
     <link rel="stylesheet" href="css/items.css"/>
 
-
     <script src="https://kit.fontawesome.com/57448d1974.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <!-- <script src="js/cart.js"></script> -->
 
 
 </head>
+
 <body>
+<!--Fetch DB data-->
 <?php
 include "db_conn.php"; // Using database connection file here
 
@@ -54,10 +55,14 @@ while ($data = mysqli_fetch_assoc($records)) {
     }
 }
 ?>
+
+<!--Body section-->
+<!--Navbar-->
 <?php
 include "libs/nav.php"; // Using navbar file here
 ?>
-<!--Body-->
+
+<!--Content text-->
 <section id="main-page">
     <div class="content-bg">
         <div class="content-text">
@@ -66,35 +71,15 @@ include "libs/nav.php"; // Using navbar file here
         </div>
     </div>
 </section>
-<section>
-    <div class="product-section">
-        <input class="radio" id="one" name="group" type="radio" checked>
-        <input class="radio" id="two" name="group" type="radio">
-        <input class="radio" id="three" name="group" type="radio">
-        <input class="radio" id="four" name="group" type="radio">
-        <input class="radio" id="five" name="group" type="radio">
-        <input class="radio" id="six" name="group" type="radio">
 
-        <div class="tabs">
-            <label class="tab" id="one-tab" for="one">Asus</label>
-            <label class="tab" id="two-tab" for="two">Acer</label>
-            <label class="tab" id="three-tab" for="three">Lenovo</label>
-            <label class="tab" id="four-tab" for="four">Dell</label>
-            <label class="tab" id="five-tab" for="five">HP</label>
-            <label class="tab" id="six-tab" for="six">Apple</label>
-            <div id="search-bar">
-                <form action="search_product.php" method="post">
-                    <input type="text" class="search__input" type="text" name="product_name"
-                           placeholder="Search a product">
-                </form>
-            </div>
-        </div>
-        <?php
-        include "libs/product_list.php"; // Using product list file here
-        ?>
-    </div>
-</section>
+<!--Product list-->
+<div>
+    <?php
+    include "libs/product_list.php";
+    ?>
+</div>
 
+<!--footer-->
 <?php
 include "libs/footer.php"; // Using footer file here
 ?>
@@ -103,9 +88,15 @@ include "libs/footer.php"; // Using footer file here
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
         crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+        integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+        integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+        crossorigin="anonymous"></script>
 </body>
 </html>
 
