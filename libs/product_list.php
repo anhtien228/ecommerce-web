@@ -10,18 +10,18 @@
     .btn:hover {
         color: #1d1d1d;
     }
-    
+
     .card {
         font-family: 'Gilroy Regular';
     }
 
     .card .card-title {
-        font-family: 'Gilroy Medium';
+        font-family: 'Gilroy Bold';
     }
 
     #product-price {
         font-family: 'Gilroy Bold';
-        font-size: 36px;
+        font-size: 32px;
     }
 
     #footer-price {
@@ -39,9 +39,7 @@
         margin: auto;
         text-align: center;
     }
-
 </style>
-
 <div class="bg-light px-3 px-lg-5 py-4 py-lg-5">
     <div class="container">
         <?php
@@ -112,7 +110,7 @@
                                 </ul>
                                 <div class="card-body" id="footer-price">
                                     <h3><label id="product-price" style="float:left;">$<?php echo $row['productPrice']; ?></label></h3>
-                                    <form method='POST' action="libs/add_cart.php">
+                                    <form method='POST' action="libs/product/add_cart.php">
                                     <input type="hidden" name='pprice' class="pprice" value="<?php echo $row['productPrice']; ?>">
                                     <input type="hidden" name='psku' class="psku" value="<?php echo $row['productSKU']; ?>">
                                     <input type="hidden" name='pid' class="pid" value="<?php echo $row['pid']; ?>">

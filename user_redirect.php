@@ -26,17 +26,20 @@ if(!isset($_SESSION["user_name"]))
         <?php if($_SESSION["user_level"] == "User") {?>
             <meta http-equiv="refresh" content="3;url=user_index.php?id=<?php echo $_SESSION['id']?>"/>
         <?php }?>
-        <?php if($_SESSION["user_level"] == "Artist") {?>
-            <meta http-equiv="refresh" content="3;url=artist_index.php"/>
+        <?php if($_SESSION["user_level"] == "Staff") {?>
+            <meta http-equiv="refresh" content="3;url=staff_index.php?id=<?php echo $_SESSION['id']?>"/>
         <?php }?>
 
     </head>
     <body>
         <!--Navigation bar-->
         <!--Navbar-->
-        <?php
-        include "libs/nav.php"; // Using navbar file here
-        ?>
+        <?php if($_SESSION["user_level"] == "User") {
+            include "libs/nav_user.php";?>
+        <?php }?>
+        <?php if($_SESSION["user_level"] == "Staff") {
+            include "libs/nav_staff.php";?>
+        <?php }?>
         <!--Body-->
 
         <section id="contact-container">

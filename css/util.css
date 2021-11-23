@@ -407,7 +407,7 @@ background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.
     margin: 7px;
     margin-top: 11px;
     background: white;
-    width: 320px;
+    width: 350px !important;
     border-radius: 3px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     padding: 20px !important;
@@ -447,9 +447,24 @@ background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.
   .shopping-cart .shopping-cart-items .item-quantity {
     color: #3d3d3d;
     font-size: 14px;
-    float: right;
   }
-  
+  .shopping-cart .shopping-cart-items .remove-item {
+    color: #ff6464;
+    font-size: 14px;
+    float: right;
+    border: none; /* Remove borders */
+    cursor: pointer; /* Mouse pointer on hover */
+    transition: 0.4s
+  }
+
+  .shopping-cart .shopping-cart-items .remove-item:hover {
+    color: #be3f3f;
+  }
+
+  .shopping-cart .shopping-cart-items .remove-item span{
+    padding: 5px;
+  }
+
   .shopping-cart:after {
     bottom: 100%;
     left: 90%;
@@ -490,14 +505,6 @@ background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.
     display: table;
     clear: both;
   }
-
-  @media (max-width: 25px) {
-    .shopping-cart-list {
-          height:200px;
-          overflow-y:auto;
-       }
-    }
-
   /*======================== SLIDE IN ANIMATION ===============================*/
   @media (min-width: 768px) {
     .animate {

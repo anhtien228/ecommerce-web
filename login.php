@@ -33,7 +33,7 @@
     <!--Navbar-->
     <?php
     if (!isset($_SESSION["user_name"]))
-        include "libs/nav2.php"; // Using navbar file here
+        include "libs/nav_guest.php"; // Using navbar file here
     ?>
 
     <!--Body-->

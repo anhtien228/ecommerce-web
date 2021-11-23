@@ -27,10 +27,10 @@ session_start();
     <!--Navbar-->
     <?php
     if (!isset($_SESSION["user_name"])) {
-        include "libs/nav2.php"; // Using navbar file here
+        include "libs/nav_guest.php"; // Using navbar file here
     }
     else {
-        include "libs/nav.php"; // Using navbar file here
+        include "libs/nav_user.php"; // Using navbar file here
     }
     ?>
     <!--Body-->

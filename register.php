@@ -17,11 +17,10 @@
 
     <script src="https://kit.fontawesome.com/57448d1974.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="js/input_validate.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 </head>
-
-<script src="js/input_validate.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 <body>
     <!--Navigation bar-->
@@ -37,7 +36,7 @@
     <!--Navbar-->
     <?php
     if (!isset($_SESSION["user_name"]))
-        include "libs/nav2.php"; // Using navbar file here
+        include "libs/nav_guest.php"; // Using navbar file here
     ?>
 
     <!--Body-->
