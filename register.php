@@ -9,8 +9,14 @@
     <title>Electro</title>
     <!--reset css-->
     <link rel="stylesheet" href="css/register.css" />
-    <link rel="stylesheet" href="css/contact.css" />
-    <link rel="stylesheet" href="css/flex.css" />
+    <link rel="stylesheet" href="css/util.css" />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <script src="https://kit.fontawesome.com/57448d1974.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
 </head>
 
@@ -28,44 +34,23 @@
         <?php }?>
     </div>
 
-    <div class="menu">
-        <nav class="flex-container">
-            <ul>
-                <!--Logo-->
-                <li>
-                    <a href="index.php"><img src="./img/rythm.png" width=250px; height=90px; /></a>
-                </li>
-                <!--Menu-->
-                <li>
-                    <a href="index.php">Home</a>
-                    <a href="login.php">Product</a>
-                    <!-- <li><form action="searchsong.php" id="search_song" method="post">
-                        <input type="text" class="search__input" type="text" name="song_name" placeholder="Search a product"></form>
-                    </li> -->
-                    <a href="about.php">About</a>
-                </li>
-                <!--User action-->
-                <li>
-                    <a href="login.php" class="btn blue"><span>Login</span></a>
-                    <a href="register.php" class="btn green"><span>Register</span></a>
-                </li>
-            </ul>
-        </nav>
-    </div>
+    <!--Navbar-->
+    <?php
+    if (!isset($_SESSION["user_name"]))
+        include "libs/nav2.php"; // Using navbar file here
+    ?>
+
     <!--Body-->
     <section id="login-container">
         <div class="login-text">
-            <h1 style="font-size: 48px;">Be a member</h1>
-            <br>
-            <p>Get tons of deals and benefits from Electro membership.</p>
+            <h1 style="font-size: 30px;">Register</h1>
+            <p>Be a member to get good recommendations!</p>
         </div>
         <div class="wrapper">
             <div class="form">
-                    <br>
-                    <br>
                     <!-- USER REGISTER -->
                     <div id="user_register">
-                    <form method="post" action="register_processing.php" id="user" onsubmit="return register_validation();">
+                    <form method="post" action="libs/auth/register_processing.php" id="user" onsubmit="return register_validation();">
                         <div class="input_wrap">
                             <label for="input_firstname">First name</label>
                             <div class="input_field">
@@ -115,10 +100,14 @@
     </section>
 
     <!--Footer-->
-    <div class="footer-login">
-        <p>Rythm</p>
+    <footer class="text-muted">
+    <div id="copyright" class="text-center p-2 fixed-bottom" style ="font-size: 14px;
+                                                                    background-color: #3F4C5C;
+                                                                    margin-top: 1rem;
+                                                                    color: white;">
+    © 2020 Copyright: <b>Electro., Corp</b>
     </div>
-
+    </footer>
 </body>
 
 </html>

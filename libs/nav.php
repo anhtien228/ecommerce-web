@@ -14,6 +14,40 @@
     }
 </style>
 
+<?php
+include "db_conn.php"; // Using database connection file here
+
+        $not_empty = False;
+        $cart_items = [];
+        $sum_cart_items = [];
+        $user_id = $_SESSION['id'];
+        $session_id = $_SESSION['shop_session'];
+
+        $sql = "CALL getCartItems(?)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $session_id);
+        $stmt->execute();
+        $records = $stmt->get_result(); // fetch data from database
+
+        if (mysqli_num_rows($records) > 0) {
+            $not_empty = True;
+            while ($data = mysqli_fetch_assoc($records)) {
+                // Store product information lists in this variable
+                $cart_items[] = $data;
+            }
+        }
+
+        $conn->next_result();
+        $sql = "CALL calCartQuantity(?)";
+        $stmt = $conn->prepare($sql); 
+        $stmt->bind_param("s", $user_id);
+        $stmt->execute();
+        $sum_records = $stmt->get_result();
+        $sum_cart_items = mysqli_fetch_assoc($sum_records);
+        $_SESSION['cart_quantity'] = $sum_cart_items['cart_quantity'];
+        $_SESSION['total_amount'] = $sum_cart_items['total'];
+?>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
     <div class="container-fluid">
         <!--Logo-->
@@ -36,7 +70,7 @@
                 </li>
             </ul>
             <div class="navbar-nav mx-auto">
-                <form action="search_product.php" method="post">
+                <form action="libs/search_product.php" method="post">
                     <input style="width: 20vw;" type="text" class="search__input" type="text" name="product_name" placeholder="Search a product">
                 </form>
             </div>
@@ -53,30 +87,42 @@
                             <i class="fas fa-shopping-bag"></i>
                             <i style='font-size: 1rem; align-self:center; font-style: normal;'><?php echo $_SESSION['cart_quantity']; ?></i>
                         </a>
-                        <div class="dropdown-menu shopping-cart" role="menu" aria-labelledby="dropdownMenuButton">
-                                <div class="shopping-cart-header">
-                                    <span class="your-cart">Your cart</span>
-                                    <div class="shopping-cart-total">
-                                        <span class="lighter-text">Total</span>
-                                        <span class="main-color-text">$<?php echo $_SESSION['total_amount']; ?></span>
-                                    </div>
+                        <div class="dropdown-menu dropdown-menu-lg-end animate slideIn shopping-cart" role="menu" aria-labelledby="dropdownMenuButton">
+                            <div class="shopping-cart-header">
+                                <span class="your-cart">Your cart</span>
+                                <div class="shopping-cart-total">
+                                    <span class="lighter-text">Total</span>
+                                    <span class="main-color-text">$<?php echo $_SESSION['total_amount']; ?></span>
                                 </div>
-
-                                <ul class="shopping-cart-items">
+                            </div>
+                            <div class="shopping-cart-list">
+                            <?php
+                            if($not_empty) {
+                                foreach ($cart_items as $item) { ?>
+                                    <ul class="shopping-cart-items">
+                                        <li class="clearfix">
+                                            <img src="<?php echo $item['productPhoto'];?>" alt="item1" />
+                                            <span class="item-name"><?php echo $item['productName'];?></span>
+                                            <span class="item-price">$<?php echo $item['productPrice'];?></span>
+                                            <span class="item-quantity">Quantity: 01</span>
+                                        </li>
+                                    </ul>
+                            <?php }
+                            }
+                            else {?>
+                                    <ul class="shopping-cart-items">
                                     <li class="clearfix">
-                                        <img src="img/product/asus_rog.jpg" alt="item1" />
-                                        <span class="item-name">Asus ROG Strix 15</span>
-                                        <span class="item-price">$896</span>
-                                        <span class="item-quantity">Quantity: 01</span>
+                                        <span class="item-name">No items in cart</span>
                                     </li>
                                 </ul>
-
-                                <a href="#" class="checkout-button">Checkout</a>
+                            <?php }?>
                             </div>
+                            <a href="#" class="checkout-button">Checkout</a>
+                        </div>
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a id="logout-button" href="logout.php" style="margin-left: 1rem;" class="btn bordered" onclick="return confirm('Are you sure you want to logout?')"><span>Logout</span></a>
+                    <a id="logout-button" href="libs/auth/logout_processing.php" style="margin-left: 1rem;" class="btn-custom bordered" onclick="return confirm('Are you sure you want to logout?')"><span>Logout</span></a>
                 </li>
             </ul>
         </div>

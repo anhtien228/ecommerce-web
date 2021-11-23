@@ -7,22 +7,6 @@
   outline: none;
   }
   
-/*======================== FOOTER ===============================*/
-  .footer-login {
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background: linear-gradient(
-                         rgba(20,20,20, .9), 
-                         rgba(20,20,20, .9));
-    font-family: "Gilroy Regular";
-    color: white;
-    text-align: center;
-    opacity: 1;
-    font-size: 12px;
-    position: absolute;
-  }
-
 /*======================== LOGIN FORM ===============================*/
 .flex-mode {
   display: flex;
@@ -38,16 +22,6 @@
   align-self:center;
   margin-left:auto;
 }
-
-  .popup-message {
-    width: 425px;
-    height: auto;
-    position: fixed;
-    top: 12%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 999;
-  }
 
   .wrapper{
   min-height: 100vh;
@@ -113,7 +87,6 @@
 
   .form .input_wrap .btn{
   text-transform: uppercase;
-  letter-spacing: 3px;
   color: #fff;
   border: 1.5px solid #727272;
   border-radius: 3px;
@@ -140,7 +113,6 @@
 
   .form .input_wrap .regbtn{
     text-transform: uppercase;
-    letter-spacing: 3px;
     color: #fff;
     background: #1d1d1d;
     padding: 20px;
@@ -161,19 +133,6 @@
     background: #fff;
     cursor: pointer;
   }
-  
-  /* .form .input_wrap .regbtn p{
-    display: inline-block;     
-    position: relative;  
-    text-decoration: none;
-    color: #fff;
-    transition: 0.4s;
-    z-index: 1;  
-  }
-
-  .form .input_wrap .regbtn p:hover{
-    color: #4285f4;
-  } */
 
   .link{
     position: absolute;
@@ -212,6 +171,16 @@
     display: none;
   }
 
+  .popup-message {
+    width: 425px;
+    height: auto;
+    position: fixed;
+    top: 12%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999;
+  }
+  
   .error{
     background: #ff8686;
     color: #1d1d1d;

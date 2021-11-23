@@ -10,7 +10,7 @@
     .btn:hover {
         color: #1d1d1d;
     }
-    
+
     .card {
         font-family: 'Gilroy Regular';
     }
@@ -39,7 +39,6 @@
         margin: auto;
         text-align: center;
     }
-
 </style>
 
 <div class="bg-light px-3 px-lg-5 py-4 py-lg-5">
@@ -55,19 +54,20 @@
             include "libs/db_conn.php"; // Using database connection file here
 
             $product_data = [];
+
+            if (isset($_GET['query'])) {
+                $product_name = $_GET['query'];
+                $_SESSION['query'] = $product_name;
+
+                $sql = "CALL getProductsByName(?)";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param("s", $product_name);
+                $stmt->execute();
+                $records = $stmt->get_result();
+            } 
             
-            if (isset($_GET['submit_filter'])) {
-                if ($_GET['brand'] == 'all' & $_GET['os'] == 'all' & $_GET['cpu'] == 'all'
-                & $_GET['ram'] == 'all' & $_GET['storage'] == 'all') {
-
-                    $sql = "CALL getLaptopProducts";
-                    $stmt = $conn->prepare($sql);
-                    $stmt->execute();
-                    $records = $stmt->get_result(); // fetch data from database
-                }
-
-                else {
-                    $product_name = '';
+            else {
+                if (isset($_GET['submit_filter'])) {
                     $brand = ($_GET['brand'] == 'all') ? '' : $_GET['brand'];
                     $os = ($_GET['os'] == 'all') ? '' : $_GET['os'];
                     $cpu = ($_GET['cpu'] == 'all') ? ''  : $_GET['cpu'];
@@ -76,17 +76,10 @@
 
                     $sql = "CALL filterProducts(?, ?, ?, ?, ?, ?)";
                     $stmt = $conn->prepare($sql);
-                    $stmt->bind_param("ssssss", $product_name, $brand, $os, $cpu, $ram, $storage);
+                    $stmt->bind_param("ssssss", $_SESSION['query'], $brand, $os, $cpu, $ram, $storage);
                     $stmt->execute();
                     $records = $stmt->get_result();
-                }   
-            }
-
-            else {
-                $sql = "CALL getLaptopProducts";
-                $stmt = $conn->prepare($sql);
-                $stmt->execute();
-                $records = $stmt->get_result(); // fetch data from database  
+                }
             }
 
             if (mysqli_num_rows($records) > 0) {
@@ -95,7 +88,7 @@
                     $product_data[] = $data;
                 }
                 foreach ($product_data as $row) { ?>
-                    <div class="col-xl-4 col-lg-6 col-md-6 mb-4 animate slideIn">
+                    <div class="col-xl-4 col-lg-6 col-md-6 mb-4">
                         <div class="card shadow-sm bg-white rounded">
                             <div class="p-3">
                                 <!--Product information (Image, SKU, CPU, RAM, GPU, Storage, Price-->
@@ -105,10 +98,10 @@
                                     <p>SKU: <?php echo $row['productSKU']; ?></p>
                                 </div>
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">CPU: <?php echo $row['productCPU']; ?></li>
-                                    <li class="list-group-item">RAM: <?php echo $row['productRAM']; ?></li>
-                                    <li class="list-group-item">GPU: <?php echo $row['productGPU']; ?></li>
-                                    <li class="list-group-item">Storage: <?php echo $row['productSto']; ?></li>
+                                    <li id="pcpu" class="list-group-item">CPU: <?php echo $row['productCPU']; ?></li>
+                                    <li id="pram" class="list-group-item">RAM: <?php echo $row['productRAM']; ?></li>
+                                    <li id="pgpu" class="list-group-item">GPU: <?php echo $row['productGPU']; ?></li>
+                                    <li id="psto" class="list-group-item">Storage: <?php echo $row['productSto']; ?></li>
                                 </ul>
                                 <div class="card-body" id="footer-price">
                                     <h3><label id="product-price" style="float:left;">$<?php echo $row['productPrice']; ?></label></h3>
@@ -123,9 +116,7 @@
                         </div>
                     </div>
                 <?php }
-            }
-
-            else { ?>
+            } else { ?>
                 <div class="alert alert-dark col-md-2" role="alert">
                     No products found!
                 </div>

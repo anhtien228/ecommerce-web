@@ -1,9 +1,160 @@
-/*======================== FLEX-BOX ===============================*/
+
 * {
-	box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 	-webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
+/*======================== PAGE LARGE TITLE ===============================*/
+
+#main-page{
+  background-color: #4285f4;
+  background-position: center;
+  text-align: center;
+  height: 350px;
+  overflow: hidden;
+}
+
+.content-bg {
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+}
+
+.content-text {
+text-align: center;
+justify-content: center;
+position: absolute;
+top: 23%;
+left: 50%;
+transform: translate(-50%, -50%);
+}
+
+.content-text h1 {
+font-family: "Gilroy Bold";
+font-size: 70px;
+text-decoration: none;
+color: #1d1d1d;
+display: inline;
+}
+
+.content-text h2 {
+font-family: "Gilroy Bold";
+font-size: 40px;
+text-decoration: none;
+color: white;
+display: inline;
+}
+
+.content-text p {
+font-family: "Gilroy Medium";
+font-size: 16px;
+text-decoration: none;
+color: white;
+}
+
+/*======================== LOGIN PAGE ===============================*/
+
+.login-text {
+  text-align: center;
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #1d1d1d;
+}
+
+.login-text h1 {
+  font-family: "Gilroy Bold";
+  font-size: 60px;
+}
+
+.login-text h2 {
+  font-family: "Gilroy Thin";
+  font-size: 54px;
+}
+
+.login-text h3 {
+  font-family: "Gilroy Thin";
+  font-size: 36px;
+}
+
+.login-text p {
+  font-family: "Gilroy Medium";
+  font-size: 16px;
+  color: #1d1d1d;
+}
+
+#login-container {
+  background: #ffffff;
+  background-position: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/*======================== POP-UP MESSAGE ===============================*/
+
+.popup-message {
+  width: 350px;
+  height: auto;
+  position: fixed;
+  top: 12%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+}
+
+.error{
+  background: #ff8686;
+  color: #1d1d1d;
+  padding: 10px;
+  width: 90%;
+  border-radius: 5px;
+  text-align: center;
+  -webkit-animation: fadeout 5s linear forwards;
+  animation: fadeout 5s linear forwards;
+}
+
+.success{
+  background: #08ffad;
+  color: #1d1d1d;
+  padding: 10px;
+  width: 90%;
+  border-radius: 5px;
+  text-align: center;
+  -webkit-animation: fadeout 5s linear forwards;
+  animation: fadeout 5s linear forwards;
+}
+
+@-webkit-keyframes fadeout {
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes fadeout {
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/*======================== FOOTER FOR LOGIN AND REGISTER PAGE ===============================*/
+.footer-login {
+  /* left: 0;
+  bottom: 0;
+  width: 100%; */
+  background: linear-gradient(
+                       rgba(20,20,20, .9), 
+                       rgba(20,20,20, .9));
+  font-family: "Gilroy Regular";
+  color: white;
+  text-align: center;
+  opacity: 1;
+  font-size: 12px;
+  position: absolute;
+}
+
+/*======================== FLEX NAV-BAR LOGIN AND REGISTER PAGE ===============================*/
 
 .flex-container {
   font-family: "Gilroy Medium";
@@ -65,16 +216,16 @@
   flex-basis: 30%;
 }
   
-  .avatar {
+.avatar {
     vertical-align: middle;
     width: 40px;
     height: 40px;
     border-radius: 50%;
-  }
+}
+  
 
-/*======================== FLEX-BOX ===============================*/
-/* Global Button Styles */ 
-.btn {
+/*======================== CUSTOM BUTTON STYLE ===============================*/
+.btn-custom {
   position: relative;
   display: inline-flex;
   flex: 0 0 auto;
@@ -98,7 +249,7 @@
   vertical-align: middle;
   outline: none;
 }
-.btn:before {
+.btn-custom:before {
   background-color: #FFFFFF;
   content: "";
   display: flex;
@@ -114,79 +265,79 @@
   bottom: 0;
   z-index: 0;
 }
-.btn span {
+.btn-custom span {
   display: flex;
   position: relative;
   z-index: 1;
 }
-.btn .icon {
+.btn-custom .icon {
   line-height: 2.125rem;
   font-size: 1.25rem;
   margin: 0 0.25rem 0 -0.25rem;
 }
-.btn:hover, .btn:active, .btn:focus {
+.btn-custom:hover, .btn-custom:active, .btn-custom:focus {
   color: #3F4C5C;
 }
-.btn:hover:before, .btn:active:before, .btn:focus:before {
+.btn-custom:hover:before, .btn-custom:active:before, .btn-custom:focus:before {
   transform: scale(1, 1);
 }
-.btn.block {
+.btn-custom.block {
   align-self: stretch;
   width: 100%;
   flex: 1 1 auto;
 }
-.btn.bordered {
+.btn-custom.bordered {
   background-color: transparent !important;
   color: #3F4C5C;
 }
-.btn.bordered:before {
+.btn-custom.bordered:before {
   background-color: #3F4C5C;
 }
-.btn.bordered:hover, .btn.bordered:active, .btn.bordered:focus {
+.btn-custom.bordered:hover, .btn-custom.bordered:active, .btn-custom.bordered:focus {
   color: #FFFFFF;
 }
-.btn.rounded {
+.btn-custom.rounded {
   border-radius: 1.1875rem;
 }
-.btn.hard {
+.btn-custom.hard {
   border-radius: 0;
 }
 
-.btn.blue {
+.btn-custom.blue {
   background-color: #4793FF;
   border-color: #4793FF;
   color: #FFFFFF;
 }
-.btn.blue:hover, .btn.blue:active, .btn.blue:focus {
+.btn-custom.blue:hover, .btn-custom.blue:active, .btn-custom.blue:focus {
   color: #4793FF;
 }
-.btn.blue.bordered {
+.btn-custom.blue.bordered {
   color: #4793FF;
 }
-.btn.blue.bordered:before {
+.btn-custom.blue.bordered:before {
   background-color: #4793FF;
 }
-.btn.blue.bordered:hover, .btn.blue.bordered:active, .btn.blue.bordered:focus {
+.btn-custom.blue.bordered:hover, .btn-custom.blue.bordered:active, .btn-custom.blue.bordered:focus {
   color: #FFFFFF;
 }
-.btn.green {
+.btn-custom.green {
   background-color: #ecba16;
   border-color: #ecba16;
   color: #FFFFFF;
 }
-.btn.green:hover, .btn.green:active, .btn.green:focus {
+.btn-custom.green:hover, .btn-custom.green:active, .btn-custom.green:focus {
   color: #ecba16;
 }
-.btn.green.bordered {
+.btn-custom.green.bordered {
   color: #ecba16;
 }
-.btn.green.bordered:before {
+.btn-custom.green.bordered:before {
   background-color: #ecba16;
 }
-.btn.green.bordered:hover, .btn.green.bordered:active, .btn.green.bordered:focus {
+.btn-custom.green.bordered:hover, .btn-custom.green.bordered:active, .btn-custom.green.bordered:focus {
   color: #FFFFFF;
 }
-.btn.green.bordered:hover, .btn.green.bordered:active, .btn.green.bordered:focus {
+.btn-custom.green.bordered:hover, .btn-custom.green.bordered:active, .btn-custom.green.bordered:focus {
   color: #FFFFFF;
 }
 
@@ -253,15 +404,13 @@ background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.
 
   .shopping-cart {
     min-width:250px;
-    border: 2px solid #343434;
-    padding: 2px;
     margin: 7px;
     margin-top: 11px;
     background: white;
     width: 320px;
     border-radius: 3px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    padding: 20px;
+    padding: 20px !important;
     font-family: 'Gilroy Regular';
   }
   .shopping-cart .shopping-cart-header {
@@ -273,6 +422,7 @@ background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.
   }
   .shopping-cart .shopping-cart-items {
     padding-top: 10px;
+    padding-left: 0px !important;
   }
   .shopping-cart .shopping-cart-items li {
     list-style-type: none;
@@ -341,18 +491,75 @@ background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.
     clear: both;
   }
 
-    /*======================== FONT ===============================*/
-    @font-face {
-      font-family: "Gilroy Regular";
-      src: url("../fonts/gilroy-regular.otf") format("opentype");
+  @media (max-width: 25px) {
+    .shopping-cart-list {
+          height:200px;
+          overflow-y:auto;
+       }
     }
-    
-    @font-face {
-      font-family: "Gilroy Medium";
-      src: url("../fonts/gilroy_medium.otf") format("opentype");
+
+  /*======================== SLIDE IN ANIMATION ===============================*/
+  @media (min-width: 768px) {
+    .animate {
+      animation-duration: 0.5s;
+      -webkit-animation-duration: 0.5s;
+      animation-fill-mode: both;
+      -webkit-animation-fill-mode: both;
     }
-    
-    @font-face {
-      font-family: "Gilroy Bold";
-      src: url("../fonts/gilroy-bold.otf") format("opentype");
+  }
+  
+  @keyframes slideIn {
+    0% {
+      transform: translateY(1rem);
+      opacity: 0;
     }
+  
+    100% {
+      transform: translateY(0rem);
+      opacity: 1;
+    }
+  
+    0% {
+      transform: translateY(1rem);
+      opacity: 0;
+    }
+  }
+  
+  @-webkit-keyframes slideIn {
+    0% {
+      -webkit-transform: transform;
+      -webkit-opacity: 0;
+    }
+  
+    100% {
+      -webkit-transform: translateY(0);
+      -webkit-opacity: 1;
+    }
+  
+    0% {
+      -webkit-transform: translateY(1rem);
+      -webkit-opacity: 0;
+    }
+  }
+  
+  .slideIn {
+    -webkit-animation-name: slideIn;
+    animation-name: slideIn;
+  }
+
+/*======================== FONT ===============================*/
+@font-face {
+  font-family: "Gilroy Regular";
+  src: url("../fonts/gilroy-regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Gilroy Medium";
+  src: url("../fonts/gilroy_medium.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Gilroy Bold";
+  src: url("../fonts/gilroy-bold.otf") format("opentype");
+}
+

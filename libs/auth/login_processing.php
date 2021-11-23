@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "db_conn.php";
+include "../db_conn.php";
 
 # Validate inputs
 if(isset($_POST['user_name']) && isset($_POST['password']))  {
@@ -15,12 +15,12 @@ if(isset($_POST['user_name']) && isset($_POST['password']))  {
     $password = validate($_POST['password']);
 
     if(empty($user_name)) {
-        header("Location: login.php?error=Username is required!");
+        header("Location: ../../login.php?error=Username is required!");
         exit();
     }
 
     else if(empty($password)) {
-        header("Location: login.php?error=Password is required!");
+        header("Location: ../../login.php?error=Password is required!");
         exit();
     }
 
@@ -70,7 +70,7 @@ if(isset($_POST['user_name']) && isset($_POST['password']))  {
                         $_SESSION['total_amount'] = 0;
                     }
                     else {
-                        header("Location: login.php?error=Something when wrong with the shopping session!".mysqli_error($conn));
+                        header("Location: ../../login.php?error=Something when wrong with the shopping session!".mysqli_error($conn));
                         exit();
                     }
                 }
@@ -87,21 +87,21 @@ if(isset($_POST['user_name']) && isset($_POST['password']))  {
 
                 if(isset($_SESSION['user_name'])) {
                     session_start();
-                    header("Location: user_redirect.php?id=".$_SESSION['id']);
+                    header("Location: ../../user_redirect.php?id=".$_SESSION['id']);
                     exit();
                 }
                 else {
-                    header("Location: login.php");
+                    header("Location: ../../login.php");
                     exit;
                 }
             }
             else {
-                header("Location: login.php?error=Incorrect Username or Password");
+                header("Location: ../../login.php?error=Incorrect Username or Password");
                 exit();
             }
         }
         else {
-            header("Location: login.php?error=Incorrect Username or Password");
+            header("Location: ../../login.php?error=Incorrect Username or Password");
             exit();
         }
     }
