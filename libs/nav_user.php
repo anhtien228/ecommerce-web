@@ -12,6 +12,13 @@
     #logout-button {
         font-family: 'Gilroy Medium';
     }
+
+    .scrollable-menu {
+    max-height: 280px;
+    overflow-y: auto;
+    }
+
+    
 </style>
 
 <?php
@@ -95,7 +102,7 @@ include "db_conn.php"; // Using database connection file here
                                     <span class="main-color-text">$<?php echo $_SESSION['total_amount']; ?></span>
                                 </div>
                             </div>
-                            <div class="shopping-cart-list">
+                            <div class="scrollable-menu">
                             <?php
                             if($not_empty) {
                                 foreach ($cart_items as $item) { ?>
@@ -104,7 +111,14 @@ include "db_conn.php"; // Using database connection file here
                                             <img src="<?php echo $item['productPhoto'];?>" alt="item1" />
                                             <span class="item-name"><?php echo $item['productName'];?></span>
                                             <span class="item-price">$<?php echo $item['productPrice'];?></span>
-                                            <span class="item-quantity">Quantity: 01</span>
+                                            <span class="item-quantity">Qty: 01</span>
+                                            <form method='POST' style="display: none;" action="libs/product/remove_cart.php">
+                                            <input type="hidden" name='pprice' class="pprice" value="<?php echo $item['productPrice']; ?>">
+                                            <input type="hidden" name='psku' class="psku" value="<?php echo $item['productSKU']; ?>">
+                                            <input type="hidden" name='pid' class="pid" value="<?php echo $item['pid']; ?>">
+                                            <input type="submit" id="remove-cart" class="hidden"></button>
+                                            </form>
+                                            <label for="remove-cart" class="remove-item"><span>Remove</span></label>
                                         </li>
                                     </ul>
                             <?php }

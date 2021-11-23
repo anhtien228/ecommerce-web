@@ -16,6 +16,7 @@ if (!isset($_SESSION["user_name"]))
 
     <link rel="stylesheet" href="css/util.css" />
     <link rel="stylesheet" href="css/items.css" />
+    <link rel="stylesheet" href="css/register.css" />
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
@@ -28,15 +29,23 @@ if (!isset($_SESSION["user_name"]))
 <body>
     <!--Navbar-->
     <?php
-    include "libs/nav_user.php"; // Using navbar file here
+    include "libs/nav_staff.php"; // Using navbar file here
     ?>
+
+    <div class="popup-message">
+        <?php if (isset($_GET['error'])) { ?>
+        <span style="display:table; margin-left: auto; margin-right: auto;" class="error"><?php echo $_GET['error']; ?></span>
+        <?php }?>
+        <?php if (isset($_GET['success'])) { ?>
+        <span style="display:table; margin-left: auto; margin-right: auto;" class="success"><?php echo $_GET['success']; ?></span>
+        <?php }?>
+    </div>
 
     <!--Content text-->
     <section id="main-page">
         <div class="content-bg">
             <div class="content-text">
-                <h2>Product List</h2>
-                <p>Latest models of laptop by different brands</p>
+                <h2>Add a product</h2>
             </div>
         </div>
     </section>
@@ -63,11 +72,11 @@ if (!isset($_SESSION["user_name"]))
     </div>
 
     <!--Product list-->
-    <div>
+    <section id="login-container">
         <?php
-        include "libs/product_list.php";
+        include "libs/staff_add_product.php";
         ?>
-    </div>
+    </section>
 
     <!--footer-->
     <?php
