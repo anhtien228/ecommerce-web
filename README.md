@@ -22,16 +22,16 @@ it will open the index.php which is the home page of website.
 
 #### Feature Checklist
 - [x] Laptop categorized by brands
-- [ ] Laptop categorized by components
-- [ ] Store shopping session and Add to cart
+- [x] Laptop categorized by components
+- [x] Store shopping session and Add to cart
 - [ ] Payment and checkout
 - [x] Database structure/SQL/Procedures
 - [x] Login/Logout/Registers function for users
-- [ ] Login/Logout function for staffs (WIP)
+- [x] Login/Logout function for staffs
 - [x] Show address of different stores with Google Maps (80%, only for 1 store now)[^1]
 - [x] Show location of user right in the website
-- [x] \(Optional) Show direction from user's location to store's location (WIP)
-- [ ] Apply responsive design to website (product grid, navbar, google map)
+- [x] \(Optional) Show direction from user's location to store's location
+- [x] Apply responsive design to website (product grid, navbar, google map)
 - [x] Use appropriate colors to website (minimal design and color palette)
 - [x] Navigation bar, logo, footer
 
