@@ -30,6 +30,8 @@
     }
 
     #copyright {
+        font-family: 'Gilroy Regular';
+        font-size: 14px;
         background-color: #3F4C5C;
         margin-top: 1rem;
         color: white;

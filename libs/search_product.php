@@ -30,8 +30,7 @@ if(isset($_POST['product_name']))  {
             while ($records = mysqli_fetch_assoc($result)) {
                 $queue[] = $records;
             }
-            $_SESSION['records'] = $queue;
-            header("Location: list_product.php?query=".$product_name);
+            header("Location: ../product.php?query=".$product_name);
             exit();
         }
         else {

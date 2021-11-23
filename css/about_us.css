@@ -1,7 +1,7 @@
 
 #about-us {
   padding-top: 2rem;
-  box-shadow: 0 -4px 8px 0 rgba(0, 0, 0, 0.4);
+  /* box-shadow: 0 -4px 8px 0 rgba(0, 0, 0, 0.4); */
 }
 
 .about-text {
@@ -17,6 +17,11 @@
 
 .about-text h1 {
     margin-bottom: 1rem;
+}
+
+.about-text h2 {
+  font-family: 'Gilroy Bold';
+  margin-bottom: 1rem;
 }
 
 .about-text h3 {

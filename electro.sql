@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 17, 2021 at 12:22 PM
+-- Generation Time: Nov 22, 2021 at 08:48 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -39,8 +39,83 @@ ON A.id = B.session_id
 WHERE A.user_id = userSessionID;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `checkCart` (IN `productSKU` VARCHAR(255), IN `sessionID` INT(8))  BEGIN
+
+SELECT 
+		product.sku AS sku
+FROM cart_item
+INNER JOIN product ON product.id=cart_item.product_id
+WHERE
+    (product.sku=productSKU) AND		(cart_item.session_id=sessionID);
+    
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `filterProducts` (IN `productName` VARCHAR(255), IN `brandFilter` VARCHAR(255), IN `osFilter` VARCHAR(255), IN `cpuFilter` VARCHAR(255), IN `ramFilter` VARCHAR(255), IN `stoFilter` VARCHAR(255))  BEGIN
+SELECT
+	product.id as pid,
+	product.name as productName,
+	product.desc as productDesc,
+    product.sku as productSKU,
+	product.cpu as productCPU,
+    product.ram as productRAM,
+    product.storage as productSto,
+    product.graphic as productGPU,
+    product.price as productPrice,
+    product.year as productYear,
+    product.photo as productPhoto,
+    product_brand.name as productBrand,
+    product_brand.desc as productOrigin
+FROM
+	product
+INNER JOIN
+	product_brand
+ON
+	product_brand.id = product.brand
+WHERE
+	(product.name LIKE CONCAT('%', productName, '%')) AND
+	(product_brand.name LIKE CONCAT('%', brandFilter, '%')) AND
+    (CASE osFilter
+     	WHEN 'mac' THEN
+    	product_brand.name = 'Apple'
+     	WHEN 'windows' THEN
+     	product_brand.name != 'Apple'
+     	ELSE product_brand.name LIKE CONCAT('%', osFilter, '%')
+     END) AND
+    (product.cpu LIKE CONCAT('%', cpuFilter, '%')) AND
+    (product.ram LIKE CONCAT('%', ramFilter, '%')) AND
+    (product.storage LIKE CONCAT('%', stoFilter, '%'));
+                            
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getCartItems` (IN `sessionID` INT)  BEGIN
+SELECT
+	product.id as pid,
+	product.name as productName,
+	product.desc as productDesc,
+    product.sku as productSKU,
+	product.cpu as productCPU,
+    product.ram as productRAM,
+    product.storage as productSto,
+    product.graphic as productGPU,
+    product.price as productPrice,
+    product.year as productYear,
+    product.photo as productPhoto,
+    product_brand.name as productBrand,
+    product_brand.desc as productOrigin
+FROM
+	cart_item
+INNER JOIN shopping_session
+ON shopping_session.id=sessionID
+INNER JOIN product
+ON cart_item.product_id=product.id
+INNER JOIN product_brand
+ON product_brand.id = product.brand;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `getLaptopProducts` ()  BEGIN 
-SELECT  product.name as productName,
+SELECT  
+		product.id as pid,
+		product.name as productName,
 		product.desc as productDesc,
         product.sku as productSKU,
 		product.cpu as productCPU,
@@ -58,6 +133,7 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `getProductsByName` (IN `productNameInput` VARCHAR(255))  BEGIN
 SELECT
+	product.id as pid,
 	product.name as productName,
 	product.desc as productDesc,
     product.sku as productSKU,
@@ -96,6 +172,20 @@ CREATE TABLE `cart_item` (
   `quantity` int(5) NOT NULL DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `cart_item`
+--
+
+INSERT INTO `cart_item` (`id`, `session_id`, `product_id`, `quantity`, `created_at`) VALUES
+(10, 1, 5, 1, '2021-11-22 14:58:18'),
+(11, 1, 4, 1, '2021-11-22 15:23:35'),
+(12, 1, 6, 1, '2021-11-22 15:25:44'),
+(13, 1, 13, 1, '2021-11-22 15:25:59'),
+(14, 1, 8, 1, '2021-11-22 15:27:37'),
+(15, 1, 10, 1, '2021-11-22 15:27:47'),
+(16, 1, 3, 1, '2021-11-22 15:27:49'),
+(21, 1, 11, 1, '2021-11-22 19:21:35');
 
 -- --------------------------------------------------------
 
@@ -167,7 +257,7 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `name`, `desc`, `sku`, `brand`, `cpu`, `ram`, `storage`, `graphic`, `price`, `year`, `photo`, `created_at`) VALUES
-(1, 'Asus ROG Strix', 'Gaming', 'G712LWS', 2, 'Intel i7-10875H', '16 GB', '1000 GB SSD', 'NVIDIA GeForce RTX 2070 SUPER', '896', 2020, 'https://drscdn.500px.org/photo/1039898936/m%3D900/v2?sig=ea03aff276e4637d75f73dd97bbc60a7ee4325940c234cfbb633ec103458c033', '2021-11-16 18:21:53'),
+(1, 'Asus ROG Strix', 'Gaming', 'G712LWS', 2, 'Intel i7-10875H', '16 GB', '1 TB SSD', 'NVIDIA GeForce RTX 2070 SUPER', '896', 2020, 'https://drscdn.500px.org/photo/1039898936/m%3D900/v2?sig=ea03aff276e4637d75f73dd97bbc60a7ee4325940c234cfbb633ec103458c033', '2021-11-21 16:21:39'),
 (2, 'Asus Chromebook', 'Chromebook', 'C423NA', 2, 'Intel N3350', '4 GB', '64 GB eMMC', 'Intel HD Graphics 500', '749', 2020, 'https://drscdn.500px.org/photo/1039898934/m%3D900/v2?sig=7ba1f8818b53e8d32e7036c9f6f49458e83fa4ac05f17cc75930858833b22429', '2021-11-12 06:08:30'),
 (3, 'Asus VivoBook', 'VivoBook', 'D712DA', 2, 'Intel 3250U', '8 GB', '256 GB SSD', 'AMD Radeon Graphics', '699', 2021, 'https://drscdn.500px.org/photo/1039898937/m%3D900/v2?sig=dd9e68bf6547da1369caad4084c6861246b5eb1dab10234939ee1cdf004a5db5', '2021-11-12 06:08:59'),
 (4, 'Lenovo IdeaPad Gaming 3', 'Gaming', '15ARH05', 1, 'Intel i7 4800H', '16 GB', '512 GB SSD', 'NVIDIA GeForce GTX 1650 Ti', '896', 2020, 'https://drscdn.500px.org/photo/1039898938/m%3D900/v2?sig=263f3f0dfe7618f5e1022926a369c66fe0ac6a7e5df309909598e2b75175853a', '2021-11-12 06:09:31'),
@@ -225,7 +315,8 @@ CREATE TABLE `shopping_session` (
 --
 
 INSERT INTO `shopping_session` (`id`, `user_id`, `total`, `created_at`) VALUES
-(1, 1, '0', '2021-11-16 08:54:16');
+(1, 1, '6582', '2021-11-22 19:21:35'),
+(2, 12, '0', '2021-11-22 19:18:33');
 
 -- --------------------------------------------------------
 
@@ -253,7 +344,8 @@ INSERT INTO `user` (`id`, `username`, `password`, `firstname`, `lastname`, `addr
 (1, 'jason123@gmail.com', '$2y$10$bj1LmM5.MaNSbd2NC2CkD.NBaOxOJMnkD.eK7.iLQqJx2nmKc.DgC', 'Jason', 'Nguyen', '5 Ham Nghi, District 1', 931251260, NULL, '2021-01-24 17:00:00'),
 (2, 'duycse2k@gmail.com', '$2y$10$yRrusuRiqm2xiNwrBQbMve.oxygt.p/60zJjGlyTpTr5OkddbsYm2', 'Duy', 'Nguyen Vinh', '106 Lexington, New York City', 903591012, NULL, '2021-05-02 17:00:00'),
 (3, 'nataliedang@gmail.com', '$2y$10$WXsWZPqogohLWBQd/cU8BOZleyp1Vyj4kRWqho1ODZiUMElD3cDqS', 'Natalie', 'Dang', '206 Ly Thuong Kiet, District 10', 938120677, NULL, '2021-07-03 17:00:00'),
-(11, 'd.atien228@gmail.com', '$2y$10$oONwELxl64N5hS.6lGGVweXtF.EBvf1bVCdPZTBEs9oqYfYTmutFO', 'Tien', 'Doan', NULL, NULL, '2003-01-01', '2021-11-16 08:27:44');
+(11, 'd.atien228@gmail.com', '$2y$10$oONwELxl64N5hS.6lGGVweXtF.EBvf1bVCdPZTBEs9oqYfYTmutFO', 'Tien', 'Doan', NULL, NULL, '2003-01-01', '2021-11-16 08:27:44'),
+(12, 'tiendoan@gmail.com', '$2y$10$PjlGIMGFgl2PeBne/970wu38w/HvRlTBzRjtzwkkRfIla9qPkBW56', 'Tien', 'Doan', NULL, NULL, '2003-01-01', '2021-11-22 19:18:12');
 
 --
 -- Indexes for dumped tables
@@ -264,8 +356,7 @@ INSERT INTO `user` (`id`, `username`, `password`, `firstname`, `lastname`, `addr
 --
 ALTER TABLE `cart_item`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `cart_item_ibfk_2` (`session_id`),
-  ADD KEY `cart_item_ibfk_3` (`product_id`);
+  ADD KEY `cart_item_ibfk_2` (`session_id`);
 
 --
 -- Indexes for table `order_details`
@@ -325,7 +416,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `cart_item`
 --
 ALTER TABLE `cart_item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT for table `order_details`
@@ -361,13 +452,13 @@ ALTER TABLE `product_brand`
 -- AUTO_INCREMENT for table `shopping_session`
 --
 ALTER TABLE `shopping_session`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables

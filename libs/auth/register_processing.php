@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "db_conn.php";
+include "../db_conn.php";
 
 # Validate inputs
     if(isset($_POST['user_name_user']) && isset($_POST['password_user'])) {
@@ -18,12 +18,12 @@ include "db_conn.php";
         $dob = validate($_POST['dob']);
 
         if(empty($user_name)) {
-            header("Location: register.php?error=Username is required!");
+            header("Location: ../../register.php?error=Username is required!");
             exit();
         }
     
         else if(empty($password)) {
-            header("Location: register.php?error=Password is required!");
+            header("Location: ../../register.php?error=Password is required!");
             exit();
         }
 
@@ -36,7 +36,7 @@ include "db_conn.php";
             if (mysqli_num_rows($result) > 0) {
                 $row = mysqli_fetch_assoc($result);
                 if($row['username'] === $user_name) {
-                    header("Location: register.php?error=The username is already registered!");
+                    header("Location: ../../register.php?error=The username is already registered!");
                     exit();
                 }
             }
@@ -48,17 +48,17 @@ include "db_conn.php";
                 VALUES ('$user_name', '$password_hash', '$first_name', '$last_name', '$dob', date('Y-m-d H:i:s'))";
     
                 if (mysqli_query($conn, $sql_insert)) {
-                    header("Location: login.php?success=Your registration was successful.<br>You can now log in!");
+                    header("Location: ../../login.php?success=Your registration was successful.<br>You can now log in!");
                     exit();
                 }
                 else {
-                    header("Location: register.php?error=Something when wrong during registration!");
+                    header("Location: ../../register.php?error=Something when wrong during registration!");
                     exit();
                 }
             }
 
             else {
-                header("Location: register.php?success=Incorrect username of password");
+                header("Location: ../../register.php?success=Incorrect username of password");
                 exit();
             }
         }
@@ -66,6 +66,6 @@ include "db_conn.php";
 
 
 else {
-    header("Location: register.php");
+    header("Location: ../../register.php");
     exit();
 }
