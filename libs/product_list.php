@@ -1,7 +1,3 @@
-<?php
-require("libs/DatabaseClass.php");
-?>
-
 <style>
     .p-3 {
         transition: box-shadow 0.5s;
@@ -54,13 +50,11 @@ require("libs/DatabaseClass.php");
             <!--Get product data-->
             <?php
 
-            $db = new DatabaseClass(password: "");
-
             $product_data = [];
 
             if (isset($_GET['submit_filter'])) {
-                if ($_GET['brand'] == 'all' & $_GET['os'] == 'all' & $_GET['cpu'] == 'all'
-                    & $_GET['ram'] == 'all' & $_GET['storage'] == 'all') {
+                if ($_GET['brand'] == 'all' & $_GET['os'] == 'all' & $_GET['cpu'] == 'all' & $_GET['ram'] == 'all'
+                & $_GET['storage'] == 'all' & $_GET['min-price'] == '' & $_GET['max-price'] == '') {
                     $records = $db->getAllProducts(); // fetch all products
                 } else {
                     $product_name = '';
@@ -69,10 +63,18 @@ require("libs/DatabaseClass.php");
                     $cpu = ($_GET['cpu'] == 'all') ? '' : $_GET['cpu'];
                     $ram = ($_GET['ram'] == 'all') ? '' : $_GET['ram'];
                     $storage = ($_GET['storage'] == 'all') ? '' : $_GET['storage'];
+                    $min_price = ($_GET['min-price'] == '') ? '' : (int)$_GET['min-price'];
+                    $max_price = ($_GET['max-price'] == '') ? '' : (int)$_GET['max-price'];
 
-                    $records = $db->getFilteredProducts($product_name, $brand, $os, $cpu, $ram, $storage); // fetch filtered products
+                    $records = $db->getFilteredProducts($product_name, $brand, $os, $cpu, $ram, $storage, $min_price, $max_price); // fetch filtered products
                 }
-            } else {
+            }
+            
+            else if (isset($_GET['reset_filter'])) {
+                $records = $db->getAllProducts(); // fetch all products
+            }
+
+            else {
                 $records = $db->getAllProducts(); // fetch all products
             }
 

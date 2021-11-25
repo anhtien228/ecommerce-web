@@ -1,4 +1,5 @@
 <!--Navigation bar-->
+
 <style>
     .nav-link {
         font-family: 'Gilroy Medium';

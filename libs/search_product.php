@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "db_conn.php";
+require("DatabaseClass.php");
 
 # Validate inputs
 if(isset($_POST['product_name']))  {
@@ -19,29 +19,25 @@ if(isset($_POST['product_name']))  {
     }
 
     else {
-        # Database Query (SQL)
-        $sql = "CALL getProductsByName(?)";
-        $stmt = $conn->prepare($sql); 
-        $stmt->bind_param("s", $product_name);
-        $stmt->execute();
-        $result = $stmt->get_result();
+        $result = $db->getProductByName($product_name);
         
         if (mysqli_num_rows($result) > 0) {
             while ($records = mysqli_fetch_assoc($result)) {
                 $queue[] = $records;
             }
+            $_SESSION['query_temp_data'] = $queue;
             header("Location: ../product.php?query=".$product_name);
             exit();
         }
         else {
-            header("Location: user_index.php?id=".$_SESSION['id']."?error=Product does not exist!");
+            header("Location: ../product.php?query=" . urlencode($product_name) . "&error=" . urlencode("none"));
             exit();
         }
     }
 }
 
 else {
-    header("Location: user_index.php?id=".$_SESSION['id']);
+    header("Location: ../user_index.php?id=".$_SESSION['id']);
     exit();
 }
 ?>
