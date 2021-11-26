@@ -71,7 +71,7 @@
                 <div class="input_wrap">
                     <label for="input_username">Price</label>
                     <div class="input_field">
-                        <input type="number" class="input" id="input_price" name="product_price" placeholder="Enter price" pattern required />
+                        <input type="number" class="input" id="input_price" name="product_price" placeholder="Enter price" required />
                     </div>
                 </div>
                 <div class="input_wrap">

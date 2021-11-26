@@ -1,3 +1,6 @@
+<?php
+require("libs/DatabaseClass.php");
+?>
 
 <!DOCTYPE html>
 <html lang="en">

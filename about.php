@@ -1,4 +1,5 @@
 <?php
+require("libs/DatabaseClass.php");
 session_start();
 if(!isset($_SESSION["user_name"]))
     header("Location: about2.php");
@@ -35,7 +36,7 @@ if(!isset($_SESSION["user_name"]))
 <body>
 <!--Navbar-->
     <?php
-    include "libs/nav.php"; // Using navbar file here
+    include "libs/nav_user.php"; // Using navbar file here
     ?>
     <!--Body-->
     <section id="main-page">
