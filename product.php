@@ -1,5 +1,6 @@
 <?php
 session_start();
+require("libs/DatabaseClass.php");
 ?>
 
 <!DOCTYPE html>

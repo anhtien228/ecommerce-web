@@ -16,7 +16,7 @@
     }
 
     .card .card-title {
-        font-family: 'Gilroy Medium';
+        font-family: 'Gilroy Bold';
     }
 
     #product-price {
@@ -51,42 +51,54 @@
         <div class="row mt-5">
             <!--Get product data-->
             <?php
-            include "libs/db_conn.php"; // Using database connection file here
-
             $product_data = [];
 
             if (isset($_GET['query'])) {
-                $product_name = $_GET['query'];
-                $_SESSION['query'] = $product_name;
+                $_SESSION['query'] = $_GET['query'];
+                $product_data_enc = json_encode($_SESSION['query_temp_data']);
+                $product_data = json_decode($product_data_enc, true);
+            }
 
-                $sql = "CALL getProductsByName(?)";
-                $stmt = $conn->prepare($sql);
-                $stmt->bind_param("s", $product_name);
-                $stmt->execute();
-                $records = $stmt->get_result();
-            } 
-            
-            else {
-                if (isset($_GET['submit_filter'])) {
+            if (isset($_GET['submit_filter'])) {
+                if ($_GET['brand'] == 'all' & $_GET['os'] == 'all' & $_GET['cpu'] == 'all' & $_GET['ram'] == 'all'
+                & $_GET['storage'] == 'all' & $_GET['min-price'] == '' & $_GET['max-price'] == '') {
+                    $records = $db->getProductsByName($_SESSION['query']);
+                    $_SESSION['temp'] = true;
+                } 
+                else {
                     $brand = ($_GET['brand'] == 'all') ? '' : $_GET['brand'];
                     $os = ($_GET['os'] == 'all') ? '' : $_GET['os'];
-                    $cpu = ($_GET['cpu'] == 'all') ? ''  : $_GET['cpu'];
+                    $cpu = ($_GET['cpu'] == 'all') ? '' : $_GET['cpu'];
                     $ram = ($_GET['ram'] == 'all') ? '' : $_GET['ram'];
                     $storage = ($_GET['storage'] == 'all') ? '' : $_GET['storage'];
+                    $min_price = ($_GET['min-price'] == '') ? '' : (int)$_GET['min-price'];
+                    $max_price = ($_GET['max-price'] == '') ? '' : (int)$_GET['max-price'];
 
-                    $sql = "CALL filterProducts(?, ?, ?, ?, ?, ?)";
-                    $stmt = $conn->prepare($sql);
-                    $stmt->bind_param("ssssss", $_SESSION['query'], $brand, $os, $cpu, $ram, $storage);
-                    $stmt->execute();
-                    $records = $stmt->get_result();
+                    $records = $db->getFilteredProducts(
+                        $_SESSION['query'],
+                        $brand,
+                        $os,
+                        $cpu,
+                        $ram,
+                        $storage,
+                        $min_price,
+                        $max_price
+                    ); // fetch filtered products
                 }
             }
 
-            if (mysqli_num_rows($records) > 0) {
-                while ($data = mysqli_fetch_assoc($records)) {
-                    // Store product information lists in this variable
-                    $product_data[] = $data;
-                }
+            else {
+                $records = $db->getProductsByName($_SESSION['query']);
+                $_SESSION['temp'] = false;
+            }
+
+            while ($data = mysqli_fetch_assoc($records)) {
+                // Store product information lists in this variable
+                $product_data[] = $data;
+            }
+
+            if (count($product_data) > 0) {
+                // Extract product information by traversing the dictionary
                 foreach ($product_data as $row) { ?>
                     <div class="col-xl-4 col-lg-6 col-md-6 mb-4">
                         <div class="card shadow-sm bg-white rounded">
@@ -106,17 +118,19 @@
                                 <div class="card-body" id="footer-price">
                                     <h3><label id="product-price" style="float:left;">$<?php echo $row['productPrice']; ?></label></h3>
                                     <form method='POST' action="libs/product/add_cart.php">
-                                    <input type="hidden" name='pprice' class="pprice" value="<?php echo $row['productPrice']; ?>">
-                                    <input type="hidden" name='psku' class="psku" value="<?php echo $row['productSKU']; ?>">
-                                    <input type="hidden" name='pid' class="pid" value="<?php echo $row['pid']; ?>">
-                                    <button type='submit' class="btn-custom" style="float:right;"><span>Add to cart</span></button>
+                                        <input type="hidden" name='pprice' class="pprice" value="<?php echo $row['productPrice']; ?>">
+                                        <input type="hidden" name='psku' class="psku" value="<?php echo $row['productSKU']; ?>">
+                                        <input type="hidden" name='pid' class="pid" value="<?php echo $row['pid']; ?>">
+                                        <button type='submit' class="btn-custom" style="float:right;"><span>Add to cart</span></button>
                                     </form>
                                 </div>
                             </div>
                         </div>
                     </div>
                 <?php }
-            } else { ?>
+            } else { 
+                echo $_SESSION['query'];
+                echo $_SESSION['temp']; ?>
                 <div class="alert alert-dark col-md-2" role="alert">
                     No products found!
                 </div>
