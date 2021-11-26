@@ -66,11 +66,11 @@
                 <label for="ram" class="form-label">RAM</label>
                 <select class="form-select" aria-label="Default select example" name="ram" id="ram">
                     <option value="all">All</option>
-                    <option value="2 gb">2 GB</option>
-                    <option value="4 gb">4 GB</option>
-                    <option value="8 gb">8 GB</option>
-                    <option value="16 gb">16 GB</option>
-                    <option value="32 gb">32 GB</option>
+                    <option value="2gb">2 GB</option>
+                    <option value="4gb">4 GB</option>
+                    <option value="8gb">8 GB</option>
+                    <option value="16gb">16 GB</option>
+                    <option value="32gb">32 GB</option>
                 </select>
             </div>
 
@@ -83,12 +83,12 @@
                 <label for="storage" class="form-label">Storage</label>
                 <select class="form-select" aria-label="Default select example" name="storage" id="storage">
                     <option value="all">All</option>
-                    <option value="64 gb">64 GB</option>
-                    <option value="128 gb">128 GB</option>
-                    <option value="256 gb">256 GB</option>
-                    <option value="512 gb">512 GB</option>
-                    <option value="1 tb">1 TB</option>
-                    <option value="2 tb">2 TB</option>
+                    <option value="64gb">64 GB</option>
+                    <option value="128gb">128 GB</option>
+                    <option value="256gb">256 GB</option>
+                    <option value="512gb">512 GB</option>
+                    <option value="1tb">1 TB</option>
+                    <option value="2tb">2 TB</option>
                 </select>
             </div>
 

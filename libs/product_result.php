@@ -55,37 +55,51 @@
 
             if (isset($_GET['query'])) {
                 $_SESSION['query'] = $_GET['query'];
-                $product_data = json_encode($_SESSION['query_temp_data']);
+                $product_data_enc = json_encode($_SESSION['query_temp_data']);
+                $product_data = json_decode($product_data_enc, true);
             }
 
             if (isset($_GET['submit_filter'])) {
-                $brand = ($_GET['brand'] == 'all') ? '' : $_GET['brand'];
-                $os = ($_GET['os'] == 'all') ? '' : $_GET['os'];
-                $cpu = ($_GET['cpu'] == 'all') ? ''  : $_GET['cpu'];
-                $ram = ($_GET['ram'] == 'all') ? '' : $_GET['ram'];
-                $storage = ($_GET['storage'] == 'all') ? '' : $_GET['storage'];
-                $min_price = (int)$_GET['min-price'];
-                $max_price = (int)$_GET['max-price'];
+                if ($_GET['brand'] == 'all' & $_GET['os'] == 'all' & $_GET['cpu'] == 'all' & $_GET['ram'] == 'all'
+                & $_GET['storage'] == 'all' & $_GET['min-price'] == '' & $_GET['max-price'] == '') {
+                    $records = $db->getProductsByName($_SESSION['query']);
+                    $_SESSION['temp'] = true;
+                } 
+                else {
+                    $brand = ($_GET['brand'] == 'all') ? '' : $_GET['brand'];
+                    $os = ($_GET['os'] == 'all') ? '' : $_GET['os'];
+                    $cpu = ($_GET['cpu'] == 'all') ? '' : $_GET['cpu'];
+                    $ram = ($_GET['ram'] == 'all') ? '' : $_GET['ram'];
+                    $storage = ($_GET['storage'] == 'all') ? '' : $_GET['storage'];
+                    $min_price = ($_GET['min-price'] == '') ? '' : (int)$_GET['min-price'];
+                    $max_price = ($_GET['max-price'] == '') ? '' : (int)$_GET['max-price'];
 
-                $array = [];
-                $records = $db->getFilteredProducts(
-                    $_SESSION['query'],
-                    $brand,
-                    $os,
-                    $cpu,
-                    $ram,
-                    $storage,
-                    $min_price,
-                    $max_price
-                ); // fetch filtered products
-
-                $product_data = json_encode($records);
+                    $records = $db->getFilteredProducts(
+                        $_SESSION['query'],
+                        $brand,
+                        $os,
+                        $cpu,
+                        $ram,
+                        $storage,
+                        $min_price,
+                        $max_price
+                    ); // fetch filtered products
+                }
             }
 
-            $product_data_dec = json_decode($product_data, true);
-            if (count($product_data_dec) > 0) {
+            else {
+                $records = $db->getProductsByName($_SESSION['query']);
+                $_SESSION['temp'] = false;
+            }
+
+            while ($data = mysqli_fetch_assoc($records)) {
+                // Store product information lists in this variable
+                $product_data[] = $data;
+            }
+
+            if (count($product_data) > 0) {
                 // Extract product information by traversing the dictionary
-                foreach ($product_data_dec as $row) { ?>
+                foreach ($product_data as $row) { ?>
                     <div class="col-xl-4 col-lg-6 col-md-6 mb-4">
                         <div class="card shadow-sm bg-white rounded">
                             <div class="p-3">
@@ -114,7 +128,9 @@
                         </div>
                     </div>
                 <?php }
-            } else { ?>
+            } else { 
+                echo $_SESSION['query'];
+                echo $_SESSION['temp']; ?>
                 <div class="alert alert-dark col-md-2" role="alert">
                     No products found!
                 </div>

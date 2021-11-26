@@ -31,7 +31,7 @@ class DatabaseClass
         return $stmt->get_result();
     }
 
-    public function getProductByName($product_name) {
+    public function getProductsByName($product_name) {
         $sql = "CALL getProductsByName(?)";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("s", $product_name);

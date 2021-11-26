@@ -19,7 +19,7 @@ if(isset($_POST['product_name']))  {
     }
 
     else {
-        $result = $db->getProductByName($product_name);
+        $result = $db->getProductsByName($product_name);
         
         if (mysqli_num_rows($result) > 0) {
             while ($records = mysqli_fetch_assoc($result)) {

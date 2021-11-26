@@ -69,10 +69,6 @@
                     $records = $db->getFilteredProducts($product_name, $brand, $os, $cpu, $ram, $storage, $min_price, $max_price); // fetch filtered products
                 }
             }
-            
-            else if (isset($_GET['reset_filter'])) {
-                $records = $db->getAllProducts(); // fetch all products
-            }
 
             else {
                 $records = $db->getAllProducts(); // fetch all products
