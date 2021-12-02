@@ -53,6 +53,7 @@
                     <option value="i3">i3</option>
                     <option value="i5">i5</option>
                     <option value="i7">i7</option>
+                    <option value="AMD">AMD</option>
                     <option value="other">Other</option>
                 </select>
             </div>
@@ -83,6 +84,7 @@
                 <label for="storage" class="form-label">Storage</label>
                 <select class="form-select" aria-label="Default select example" name="storage" id="storage">
                     <option value="all">All</option>
+                    <option value="32gb">32 GB</option>
                     <option value="64gb">64 GB</option>
                     <option value="128gb">128 GB</option>
                     <option value="256gb">256 GB</option>

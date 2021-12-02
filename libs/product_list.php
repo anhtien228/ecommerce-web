@@ -84,7 +84,13 @@
                         <div class="card shadow-sm bg-white rounded">
                             <div class="p-3">
                                 <!--Product information (Image, SKU, CPU, RAM, GPU, Storage, Price-->
-                                <img src='<?php echo $row['productPhoto']; ?>' class="card-img-top" alt="...">
+                                <?php $word = "https://encrypted-tbn0.gstatic.com";
+                                    if(strpos($row['productPhoto'], $word) !== false) {?>
+                                <img src='<?php echo $row['productPhoto']; ?>' class="card-img-top" alt="<?php echo $row['productName']; ?>">
+                                <?php }
+                                    else { ?>
+                                <img src='<?php echo $row['productPhoto']; ?>' class="card-img-top" alt="<?php echo $row['productName']; ?>">
+                                <?php }?>
                                 <div class="card-body">
                                     <h3 id="pname" class="card-title"><?php echo $row['productName']; ?></h3>
                                     <p>SKU: <?php echo $row['productSKU']; ?></p>

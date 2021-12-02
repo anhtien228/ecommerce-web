@@ -7,52 +7,16 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-/*======================== PAGE LARGE TITLE ===============================*/
+/*======================== JUMBOTRON ===============================*/
 
-#main-page{
-  background-color: #4285f4;
-  background-position: center;
-  text-align: center;
-  height: 350px;
-  overflow: hidden;
+body {
+  padding-top: 90px;
 }
 
-.content-bg {
-background-position: center;
-background-repeat: no-repeat;
-background-size: cover;
-}
-
-.content-text {
-text-align: center;
-justify-content: center;
-position: absolute;
-top: 23%;
-left: 50%;
-transform: translate(-50%, -50%);
-}
-
-.content-text h1 {
-font-family: "Gilroy Bold";
-font-size: 70px;
-text-decoration: none;
-color: #1d1d1d;
-display: inline;
-}
-
-.content-text h2 {
-font-family: "Gilroy Bold";
-font-size: 40px;
-text-decoration: none;
-color: white;
-display: inline;
-}
-
-.content-text p {
-font-family: "Gilroy Medium";
-font-size: 16px;
-text-decoration: none;
-color: white;
+@media (max-width: 980px) {
+  body {
+    padding-top: 90px;
+  }
 }
 
 /*======================== LOGIN PAGE ===============================*/

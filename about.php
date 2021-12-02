@@ -39,13 +39,22 @@ if(!isset($_SESSION["user_name"]))
     include "libs/nav_user.php"; // Using navbar file here
     ?>
     <!--Body-->
-    <section id="main-page">
-        <div class="content-bg">
-            <div class="content-text">
-                <h2>About us</h2>
-            </div>
+    <div class="jumbotron jumbotron-fluid text-center">
+        <div class="container-fluid" style="background-color: #4285f4; padding: 3rem; margin-top: auto;">
+            <h2 style= "font-family: Gilroy Bold;
+                        font-size: 40px;
+                        text-decoration: none;
+                        color: white;">
+                        About us
+            </h2>
+            <p style= "font-family: Gilroy Medium;
+                text-decoration: none;
+                color: white;">
+                Find out how to reach us!
+            </p>
         </div>
-    </section>
+    </div>
+
     <section id="about-us">
         <div class="about-text" style="margin-top: 4rem;">
             <h2>Introduction</h2>

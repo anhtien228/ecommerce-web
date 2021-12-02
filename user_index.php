@@ -33,14 +33,21 @@ if (!isset($_SESSION["user_name"]))
     ?>
 
     <!--Content text-->
-    <section id="main-page">
-        <div class="content-bg">
-            <div class="content-text">
-                <h2>Product List</h2>
-                <p>Latest models of laptop by different brands</p>
-            </div>
+    <div class="jumbotron jumbotron-fluid text-center">
+        <div class="container-fluid" style="background-color: #4285f4; padding: 3rem;">
+            <h2 style= "font-family: Gilroy Bold;
+                        font-size: 40px;
+                        text-decoration: none;
+                        color: white;">
+                        Product List
+            </h2>
+            <p style= "font-family: Gilroy Medium;
+                        text-decoration: none;
+                        color: white;">
+                        Latest models of laptop from different brands
+            </p>
         </div>
-    </section>
+    </div>
 
     <div class="popup-message">
         <?php if (isset($_SESSION['add_cart']) && $_SESSION['add_cart'] == "added") { ?>

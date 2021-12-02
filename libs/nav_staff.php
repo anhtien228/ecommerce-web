@@ -17,7 +17,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
     <div class="container-fluid">
         <!--Logo-->
-        <a class="navbar-brand" href="staff_index.php"><img class="d-inline-block align-top" src="./img/rythm.png" alt="" width="180"></a>
+        <a class="navbar-brand" href="staff_index.php"><img class="d-inline-block align-top" src="./img/electro.png" alt="electro_shop_laptop" width="180"></a>
         <!--Toggle button for responsive design-->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

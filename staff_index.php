@@ -42,13 +42,16 @@ if (!isset($_SESSION["user_name"]))
     </div>
 
     <!--Content text-->
-    <section id="main-page">
-        <div class="content-bg">
-            <div class="content-text">
-                <h2>Add a product</h2>
-            </div>
+    <div class="jumbotron jumbotron-fluid text-center">
+        <div class="container-fluid" style="background-color: #4285f4; padding: 3rem; margin-top: auto;">
+            <h2 style= "font-family: Gilroy Bold;
+                        font-size: 40px;
+                        text-decoration: none;
+                        color: white;">
+                        Add a product
+            </h2>
         </div>
-    </section>
+    </div>
 
     <div class="popup-message">
         <?php if (isset($_SESSION['add_cart']) && $_SESSION['add_cart'] == "added") { ?>

@@ -104,7 +104,7 @@
                         <div class="card shadow-sm bg-white rounded">
                             <div class="p-3">
                                 <!--Product information (Image, SKU, CPU, RAM, GPU, Storage, Price-->
-                                <img src='<?php echo $row['productPhoto']; ?>' class="card-img-top" alt="...">
+                                <img src='<?php echo $row['productPhoto']; ?>' class="card-img-top" alt="<?php echo $row['productName']; ?>">
                                 <div class="card-body">
                                     <h3 id="pname" class="card-title"><?php echo $row['productName']; ?></h3>
                                     <p>SKU: <?php echo $row['productSKU']; ?></p>

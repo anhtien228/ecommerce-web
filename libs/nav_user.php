@@ -59,14 +59,14 @@ include "db_conn.php"; // Using database connection file here
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
     <div class="container-fluid">
         <!--Logo-->
-        <a class="navbar-brand" href="user_index?id=<?php echo $_SESSION['id'] ?>"><img class="d-inline-block align-top" src="./img/rythm.png" alt="" width="180"></a>
+        <a class="navbar-brand" href="user_index?id=<?php echo $_SESSION['id'] ?>"><img class="d-inline-block align-top" src="./img/electro.png" alt="electro_shop_laptop" width="180"></a>
         <!--Toggle button for responsive design-->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!--Menu (Home, Product, About)-->
-            <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link" href="user_index?id=<?php echo $_SESSION['id'] ?>">Home</a>
                 </li>
@@ -77,12 +77,12 @@ include "db_conn.php"; // Using database connection file here
                     <a class="nav-link" href="about.php?id=<?php echo $_SESSION['id'] ?>">About</a>
                 </li>
             </ul>
-            <div class="navbar-nav mx-auto">
+            <div class="mx-auto">
                 <form action="libs/search_product.php" method="post">
                     <input style="width: 20vw;" type="text" class="search__input" type="text" name="product_name" placeholder="Search a product">
                 </form>
             </div>
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="#">
                         <i class="fas fa-user"></i>
@@ -109,7 +109,7 @@ include "db_conn.php"; // Using database connection file here
                                 foreach ($cart_items as $item) { ?>
                                     <ul class="shopping-cart-items">
                                         <li class="clearfix">
-                                            <img src="<?php echo $item['productPhoto'];?>" alt="item1" />
+                                            <img src="<?php echo $item['productPhoto'];?>" alt="<?php echo $row['productName'];?>" />
                                             <span class="item-name"><?php echo $item['productName'];?></span>
                                             <span class="item-price">$<?php echo $item['productPrice'];?></span>
                                             <span class="item-quantity">Qty: 01</span>

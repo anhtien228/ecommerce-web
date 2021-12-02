@@ -24,22 +24,14 @@
 
     var input_firstname = document.querySelector("#input_firstname");
     var input_lastname = document.querySelector("#input_lastname");
-    var input_name = document.querySelector("#input_name");
     var input_username_user = document.querySelector("#input_username_user");
     var input_password_user = document.querySelector("#input_password_user");
-    var input_username_artist = document.querySelector("#input_username_artist");
-    var input_password_artist = document.querySelector("#input_password_artist");
     
     var error_name = document.querySelector(".error_name");
     var error_username = document.querySelector(".error_username");
     var error_password = document.querySelector(".error_password");
     
-    if(input_name.value.length <= 1 && user_level.checked){
-      error_name.style.display = "inline-block";
-      input_name.style.border = "1px solid #f74040";
-      return false;
-    }
-    else if(input_firstname.value.length <= 1 && !user_level.checked){
+    if(input_firstname.value.length <= 1 && !user_level.checked){
       error_name.style.display = "inline-block";
       input_firstname.style.border = "1px solid #f74040";
       return false;
@@ -57,16 +49,6 @@
     else if(input_password_user.value.length < 8 && !user_level.checked) {
       error_password.style.display = "inline-block";
       input_password_user.style.border = "1px solid #f74040";
-      return false;
-    }
-    else if(input_username_artist.value.length <= 5 && user_level.checked){
-      error_username.style.display = "inline-block";
-      input_username_artist.style.border = "1px solid #f74040";
-      return false;
-    }
-    else if(input_password_artist.value.length < 8 && user_level.checked) {
-      error_password.style.display = "inline-block";
-      input_password_artist.style.border = "1px solid #f74040";
       return false;
     }
     else{
